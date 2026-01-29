@@ -12,10 +12,11 @@ import type { CalendarEvent } from '../types';
 import styles from './TabViews.module.css';
 
 interface ContentStrategyTabProps {
+  events: Record<number, CalendarEvent[]>;
   onEventClick: (event: CalendarEvent) => void;
 }
 
-export function ContentStrategyTab({ onEventClick }: ContentStrategyTabProps) {
+export function ContentStrategyTab({ events, onEventClick }: ContentStrategyTabProps) {
   return (
     <div className={styles.tabContent}>
       {/* Twitter Audit Section */}
@@ -72,7 +73,7 @@ export function ContentStrategyTab({ onEventClick }: ContentStrategyTabProps) {
           A strategic content calendar balancing viral demos, educational tips, memes, developer spotlights, and collaborations.
         </p>
 
-        <ContentCalendar onEventClick={onEventClick} />
+        <ContentCalendar events={events} onEventClick={onEventClick} />
 
         <div className={styles.sectionDivider}>
           <div className={styles.dividerLine} />

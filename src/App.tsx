@@ -1,7 +1,7 @@
 import { Header, TabNavigation, Footer } from './components/layout';
 import { Modal } from './components/ui';
 import { ContentStrategyTab, AICampaignTab } from './views';
-import { useActiveTab, useModal } from './hooks';
+import { useActiveTab, useModal, useCalendarEvents } from './hooks';
 import type { CalendarEvent } from './types';
 import styles from './App.module.css';
 
@@ -37,10 +37,21 @@ const footerConfig = {
 function App() {
   const { activeTab, switchTab } = useActiveTab('q1');
   const { isOpen, event, openModal, closeModal } = useModal();
+  const { events, updateEvent, getEventById } = useCalendarEvents();
 
   // Handler for calendar event clicks (receives full event object)
   const handleEventClick = (eventData: CalendarEvent) => {
     openModal(eventData);
+  };
+
+  // Handler for saving event edits
+  const handleSaveEvent = (eventId: string, updates: Partial<CalendarEvent>) => {
+    updateEvent(eventId, updates);
+    // Get the updated event and refresh the modal
+    const updatedEvent = getEventById(eventId);
+    if (updatedEvent) {
+      openModal(updatedEvent);
+    }
   };
 
   return (
@@ -56,7 +67,7 @@ function App() {
             role="tabpanel"
             aria-labelledby="tab-btn-q1"
           >
-            <ContentStrategyTab onEventClick={handleEventClick} />
+            <ContentStrategyTab events={events} onEventClick={handleEventClick} />
           </div>
         )}
 
@@ -73,7 +84,7 @@ function App() {
 
       <Footer {...footerConfig} />
 
-      <Modal isOpen={isOpen} onClose={closeModal} event={event} />
+      <Modal isOpen={isOpen} onClose={closeModal} event={event} onSave={handleSaveEvent} />
     </div>
   );
 }

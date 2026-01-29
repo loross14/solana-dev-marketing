@@ -1,8 +1,8 @@
-import { calendarEvents } from '../../data/calendarEvents';
 import type { CalendarEvent } from '../../types';
 import styles from './ContentCalendar.module.css';
 
 interface ContentCalendarProps {
+  events: Record<number, CalendarEvent[]>;
   onEventClick: (event: CalendarEvent) => void;
 }
 
@@ -31,7 +31,7 @@ const legendItems = [
   { type: 'Engagement', label: 'Engagement' },
 ];
 
-export function ContentCalendar({ onEventClick }: ContentCalendarProps) {
+export function ContentCalendar({ events, onEventClick }: ContentCalendarProps) {
   // Generate calendar days (1-30)
   const days = Array.from({ length: 30 }, (_, i) => i + 1);
 
@@ -71,8 +71,8 @@ export function ContentCalendar({ onEventClick }: ContentCalendarProps) {
 
         {/* Calendar days */}
         {days.map((day) => {
-          const events = calendarEvents[day] || [];
-          const hasEvents = events.length > 0;
+          const dayEvents = events[day] || [];
+          const hasEvents = dayEvents.length > 0;
           const dayOfWeek = getDayOfWeek(day);
           const isWeekend = dayOfWeek === 'Sat' || dayOfWeek === 'Sun';
 
@@ -85,7 +85,7 @@ export function ContentCalendar({ onEventClick }: ContentCalendarProps) {
                 <span className={styles.dayNumber}>{day}</span>
               </div>
               <div className={styles.dayEvents}>
-                {events.map((event) => (
+                {dayEvents.map((event) => (
                   <button
                     key={event.id}
                     className={`${styles.event} ${typeColors[event.type] || ''}`}
