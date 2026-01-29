@@ -1,9 +1,8 @@
 import { CollapsibleSection, ContentCalendar } from '../components/sections';
-import { Table, TweetBox, PillarCard } from '../components/ui';
+import { Table, PillarCard } from '../components/ui';
 import {
   competitorAccounts,
   patterns,
-  tweetExamples,
   successMetrics,
   collaborationTargets,
   contentPillars,
@@ -94,35 +93,6 @@ export function ContentStrategyTab({ events, onEventClick }: ContentStrategyTabP
             />
           ))}
         </div>
-      </CollapsibleSection>
-
-      {/* Example Tweets Section */}
-      <CollapsibleSection
-        id="section-tweets"
-        icon="✍️"
-        iconVariant="content"
-        title="Example Tweets (10 Samples)"
-        subtitle="Ready-to-post content across all formats"
-      >
-        {tweetExamples.slice(0, 5).map((tweet) => (
-          <TweetBox
-            key={tweet.id}
-            category={tweet.category}
-            content={tweet.content}
-            rationale={tweet.rationale}
-          />
-        ))}
-        <details className={styles.moreContent}>
-          <summary>Show 5 more examples</summary>
-          {tweetExamples.slice(5).map((tweet) => (
-            <TweetBox
-              key={tweet.id}
-              category={tweet.category}
-              content={tweet.content}
-              rationale={tweet.rationale}
-            />
-          ))}
-        </details>
       </CollapsibleSection>
 
       {/* Success Metrics Section */}

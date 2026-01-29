@@ -16,34 +16,6 @@ import styles from './TabViews.module.css';
 export function AICampaignTab() {
   return (
     <div className={styles.tabContent}>
-      {/* Narrative Section */}
-      <CollapsibleSection
-        id="section-q3-narrative"
-        icon="🤖"
-        iconVariant="ai"
-        title="Defining Solana's Global Position"
-        subtitle="The settlement layer for the non-human economy"
-      >
-        <p className={styles.sectionDesc}>
-          AI agents are the new power users. They can't open bank accounts. They can hold Solana wallets.
-        </p>
-
-        <div className={styles.positioningBox}>
-          <h4>Technical Positioning (For the Skeptical ML Engineer)</h4>
-          <p className={styles.sectionDesc}>What actually matters for your agent architecture:</p>
-
-          <Table
-            columns={[
-              { key: 'metric', header: 'Metric', render: (v) => <strong>{String(v)}</strong> },
-              { key: 'solanaSpecs', header: 'Solana Specs' },
-              { key: 'whyItMatters', header: 'Why It Matters for AI' },
-            ]}
-            data={technicalSpecs}
-            ariaLabel="Technical specifications"
-          />
-        </div>
-      </CollapsibleSection>
-
       {/* Competition Section */}
       <CollapsibleSection
         id="section-q3-content"
@@ -89,6 +61,29 @@ export function AICampaignTab() {
           ]}
           data={sponsors}
           ariaLabel="Potential sponsors"
+        />
+      </CollapsibleSection>
+
+      {/* Narrative Section */}
+      <CollapsibleSection
+        id="section-q3-narrative"
+        icon="🤖"
+        iconVariant="ai"
+        title="Solana's AI Position"
+        subtitle="The settlement layer for the non-human economy"
+      >
+        <p className={styles.sectionDesc}>
+          AI agents can't open bank accounts — but they can hold Solana wallets.
+        </p>
+
+        <Table
+          columns={[
+            { key: 'metric', header: 'Metric', render: (v) => <strong>{String(v)}</strong> },
+            { key: 'solanaSpecs', header: 'Specs' },
+            { key: 'whyItMatters', header: 'Why It Matters' },
+          ]}
+          data={technicalSpecs}
+          ariaLabel="Technical specifications"
         />
       </CollapsibleSection>
 

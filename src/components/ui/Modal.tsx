@@ -14,7 +14,6 @@ function getSession(): number | null {
   if (!stored) return null;
   const timestamp = parseInt(stored, 10);
   if (isNaN(timestamp)) return null;
-  // Check if session is still valid
   if (Date.now() - timestamp > SESSION_DURATION_MS) {
     sessionStorage.removeItem(SESSION_KEY);
     return null;
@@ -34,14 +33,23 @@ function getSessionTimeRemaining(): string | null {
   return `${minutes}m`;
 }
 
+// Type badge color mapping
+const typeBadgeStyles: Record<string, string> = {
+  'Thread': styles.badgeThread,
+  'Quick Tip': styles.badgeTip,
+  'Meme': styles.badgeMeme,
+  'Spotlight': styles.badgeSpotlight,
+  'Engagement': styles.badgeEngagement,
+};
+
 type AuthState =
-  | 'idle'           // Not attempting auth
-  | 'options'        // Showing auth options (TouchID setup / password)
-  | 'touchid'        // Attempting TouchID auth
-  | 'password'       // Showing password input
-  | 'setup-password' // Password input for TouchID setup
-  | 'setup-touchid'  // Registering TouchID after password verified
-  | 'authenticated'; // Successfully authenticated
+  | 'idle'
+  | 'options'
+  | 'touchid'
+  | 'password'
+  | 'setup-password'
+  | 'setup-touchid'
+  | 'authenticated';
 
 interface ModalProps {
   isOpen: boolean;
@@ -67,7 +75,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
   const [editNotes, setEditNotes] = useState('');
   const [editImageUrl, setEditImageUrl] = useState('');
 
-  // Reset edit state when modal opens with new event
+  // Reset state when modal opens with new event
   useEffect(() => {
     if (event) {
       setEditTitle(event.title);
@@ -76,7 +84,6 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
       setEditNotes(event.notes);
       setEditImageUrl(event.imageUrl || '');
     }
-    // Reset all state when modal opens
     setIsEditing(false);
     setAuthState('idle');
     setPassword('');
@@ -84,7 +91,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
     setAuthError(null);
   }, [event]);
 
-  // Focus trap and initial focus
+  // Focus management
   useEffect(() => {
     if (isOpen && modalRef.current) {
       const closeButton = modalRef.current.querySelector('button');
@@ -92,14 +99,14 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
     }
   }, [isOpen]);
 
-  // Auto-trigger TouchID if passkey exists
+  // Auto-trigger TouchID
   useEffect(() => {
     if (authState === 'touchid' && hasPasskey) {
       handleTouchIdAuth();
     }
   }, [authState, hasPasskey]);
 
-  // Handle TouchID registration after password verified
+  // Handle TouchID setup
   useEffect(() => {
     if (authState === 'setup-touchid') {
       handleTouchIdSetup();
@@ -116,19 +123,14 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
 
   const handleEditClick = () => {
     setAuthError(null);
-
-    // Check for valid session first
     if (getSession()) {
       setAuthState('authenticated');
       setIsEditing(true);
       return;
     }
-
     if (hasPasskey) {
-      // If passkey exists, try TouchID first
       setAuthState('touchid');
     } else {
-      // Show options: setup TouchID or use password
       setAuthState('options');
     }
   };
@@ -140,7 +142,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
       setAuthState('authenticated');
       setIsEditing(true);
     } else {
-      setAuthError('TouchID failed. Use password instead.');
+      setAuthError('TouchID failed');
       setAuthState('options');
     }
   };
@@ -152,7 +154,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
       setAuthState('authenticated');
       setIsEditing(true);
     } else {
-      setAuthError('TouchID setup failed. Use password instead.');
+      setAuthError('Setup failed');
       setAuthState('password');
     }
   };
@@ -161,11 +163,9 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
     e.preventDefault();
     if (password === EDIT_PASSWORD) {
       if (authState === 'setup-password') {
-        // Password verified, now set up TouchID
         setAuthState('setup-touchid');
         setPassword('');
       } else {
-        // Direct password auth - create session
         createSession();
         setAuthState('authenticated');
         setIsEditing(true);
@@ -208,7 +208,6 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
     setAuthState('idle');
   };
 
-  // Format content with line breaks (for view mode)
   const formattedContent = event.content.split('\n').map((line, i) => (
     <span key={i}>
       {line}
@@ -217,6 +216,8 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
   ));
 
   const showAuthUI = authState !== 'idle' && authState !== 'authenticated' && !isEditing;
+  const modalClasses = `${styles.modal} ${isEditing ? styles.modalEditing : ''}`;
+  const contentClasses = `${styles.content} ${showAuthUI ? styles.contentBlurred : ''}`;
 
   return createPortal(
     <div
@@ -226,25 +227,36 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className={styles.modal} ref={modalRef} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.header}>
-          {isEditing ? (
-            <input
-              type="text"
-              value={editTitle}
-              onChange={(e) => setEditTitle(e.target.value)}
-              className={styles.titleInput}
-              placeholder="Event title"
-            />
-          ) : (
-            <h3 id="modal-title" className={styles.title}>{event.title}</h3>
-          )}
+      <div className={modalClasses} ref={modalRef} onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
+        <div className={`${styles.header} ${isEditing ? styles.headerEditing : ''}`}>
+          <div className={styles.headerLeft}>
+            {isEditing ? (
+              <input
+                type="text"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                className={styles.titleInput}
+                placeholder="Event title"
+              />
+            ) : (
+              <>
+                <h3 id="modal-title" className={styles.title}>{event.title}</h3>
+                <span className={`${styles.typeBadge} ${typeBadgeStyles[event.type] || ''}`}>
+                  {event.type}
+                </span>
+              </>
+            )}
+            {isEditing && (
+              <span className={styles.editingBadge}>Editing</span>
+            )}
+          </div>
           <div className={styles.headerActions}>
             {!isEditing && authState === 'idle' && onSave && (
               <>
                 {getSession() && (
-                  <span className={styles.sessionIndicator} title="Session active">
-                    {getSessionTimeRemaining()} left
+                  <span className={styles.sessionIndicator}>
+                    {getSessionTimeRemaining()}
                   </span>
                 )}
                 <button
@@ -257,190 +269,63 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
               </>
             )}
             <button
-              className={styles.close}
+              className={styles.closeButton}
               onClick={onClose}
               aria-label="Close modal"
             >
-              &times;
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
             </button>
           </div>
         </div>
 
-        {/* Auth UI */}
-        {showAuthUI && (
-          <div className={styles.authSection}>
-            {/* Auth Options */}
-            {authState === 'options' && (
-              <div className={styles.authOptions}>
-                {authError && (
-                  <p className={styles.authError}>{authError}</p>
-                )}
-                <p className={styles.authPrompt}>How would you like to authenticate?</p>
-                <div className={styles.authButtons}>
-                  {isSupported && (
-                    <button
-                      className={styles.touchIdButton}
-                      onClick={() => {
-                        if (hasPasskey) {
-                          setAuthState('touchid');
-                        } else {
-                          setAuthState('setup-password');
-                        }
-                      }}
-                    >
-                      <span className={styles.touchIdIcon}>
-                        {hasPasskey ? '🔐' : '✨'}
-                      </span>
-                      {hasPasskey ? 'Use TouchID' : 'Set up TouchID'}
-                      {!hasPasskey && <span className={styles.recommended}>Recommended</span>}
-                    </button>
-                  )}
-                  <button
-                    className={styles.passwordButton}
-                    onClick={() => setAuthState('password')}
-                  >
-                    <span className={styles.passwordIcon}>🔑</span>
-                    Use Password
-                  </button>
-                </div>
-                <button className={styles.cancelLink} onClick={handleCancelAuth}>
-                  Cancel
-                </button>
-              </div>
-            )}
-
-            {/* TouchID in progress */}
-            {authState === 'touchid' && (
-              <div className={styles.touchIdPrompt}>
-                <div className={styles.touchIdSpinner}>🔐</div>
-                <p>Authenticate with TouchID...</p>
-                <button className={styles.cancelLink} onClick={() => setAuthState('options')}>
-                  Cancel
-                </button>
-              </div>
-            )}
-
-            {/* TouchID setup in progress */}
-            {authState === 'setup-touchid' && (
-              <div className={styles.touchIdPrompt}>
-                <div className={styles.touchIdSpinner}>✨</div>
-                <p>Setting up TouchID...</p>
-                <p className={styles.touchIdHint}>Follow the prompt to register your fingerprint</p>
-              </div>
-            )}
-
-            {/* Password input (direct auth) */}
-            {authState === 'password' && (
-              <div className={styles.passwordPrompt}>
-                <form onSubmit={handlePasswordSubmit}>
-                  <label htmlFor="edit-password" className={styles.passwordLabel}>
-                    Enter password to edit:
-                  </label>
-                  <div className={styles.passwordInputGroup}>
-                    <input
-                      id="edit-password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                        setPasswordError(false);
-                      }}
-                      className={`${styles.passwordInput} ${passwordError ? styles.passwordInputError : ''}`}
-                      placeholder="Password"
-                      autoFocus
-                    />
-                    <button type="submit" className={styles.passwordSubmit}>
-                      Unlock
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.passwordCancel}
-                      onClick={() => setAuthState('options')}
-                    >
-                      Back
-                    </button>
-                  </div>
-                  {passwordError && (
-                    <p className={styles.passwordErrorText}>Incorrect password</p>
-                  )}
-                </form>
-              </div>
-            )}
-
-            {/* Password input for TouchID setup */}
-            {authState === 'setup-password' && (
-              <div className={styles.passwordPrompt}>
-                <form onSubmit={handlePasswordSubmit}>
-                  <label htmlFor="setup-password" className={styles.passwordLabel}>
-                    Enter password to set up TouchID:
-                  </label>
-                  <p className={styles.setupHint}>
-                    You'll only need to do this once per device.
-                  </p>
-                  <div className={styles.passwordInputGroup}>
-                    <input
-                      id="setup-password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                        setPasswordError(false);
-                      }}
-                      className={`${styles.passwordInput} ${passwordError ? styles.passwordInputError : ''}`}
-                      placeholder="Password"
-                      autoFocus
-                    />
-                    <button type="submit" className={styles.passwordSubmit}>
-                      Continue
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.passwordCancel}
-                      onClick={() => setAuthState('options')}
-                    >
-                      Back
-                    </button>
-                  </div>
-                  {passwordError && (
-                    <p className={styles.passwordErrorText}>Incorrect password</p>
-                  )}
-                </form>
-              </div>
-            )}
-          </div>
-        )}
-
-        <div className={styles.content}>
+        {/* Content */}
+        <div className={contentClasses}>
+          {/* Tweet Preview */}
           <div className={styles.tweetPreview}>
             <div className={styles.tweetHeader}>
-              <span className={styles.avatar}>🟣</span>
+              <div className={styles.avatar}>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <circle cx="16" cy="16" r="16" fill="url(#avatarGradient)"/>
+                  <defs>
+                    <linearGradient id="avatarGradient" x1="0" y1="0" x2="32" y2="32">
+                      <stop stopColor="#9945FF"/>
+                      <stop offset="1" stopColor="#14F195"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
               <div className={styles.tweetMeta}>
-                <strong>solana_devs</strong>
-                <span className={styles.handle}>@solana_devs</span>
+                <span className={styles.tweetName}>Solana Devs</span>
+                <span className={styles.tweetHandle}>@solana_devs</span>
               </div>
             </div>
-            <div className={styles.tweetContent}>
+            <div className={styles.tweetBody}>
               {isEditing ? (
-                <textarea
-                  value={editContent}
-                  onChange={(e) => setEditContent(e.target.value)}
-                  className={styles.contentTextarea}
-                  placeholder="Tweet content..."
-                  rows={10}
-                />
+                <div className={styles.textareaWrapper}>
+                  <textarea
+                    value={editContent}
+                    onChange={(e) => setEditContent(e.target.value)}
+                    className={styles.contentTextarea}
+                    placeholder="Tweet content..."
+                    rows={10}
+                  />
+                  <span className={`${styles.charCount} ${editContent.length > 280 ? styles.charCountOver : ''}`}>
+                    {editContent.length}/280
+                  </span>
+                </div>
               ) : (
-                formattedContent
+                <div className={styles.tweetContent}>{formattedContent}</div>
               )}
             </div>
           </div>
 
+          {/* Media Field */}
           {isEditing ? (
-            <div className={styles.editImageField}>
-              <label htmlFor="edit-image" className={styles.fieldLabel}>
-                Image/Video URL:
-              </label>
+            <div className={styles.fieldGroup}>
+              <label className={styles.fieldLabel}>Media URL</label>
               <input
-                id="edit-image"
                 type="text"
                 value={editImageUrl}
                 onChange={(e) => setEditImageUrl(e.target.value)}
@@ -448,29 +333,34 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
                 placeholder="https://..."
               />
             </div>
-          ) : (
-            event.imageUrl && (
-              <div className={styles.imagePreview}>
-                <span className={styles.imageIcon}>🖼️</span>
-                <span>Image/Video: {event.imageUrl}</span>
-              </div>
-            )
+          ) : event.imageUrl && (
+            <div className={styles.mediaPreview}>
+              <span className={styles.mediaIcon}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+                  <circle cx="7" cy="8" r="1.5" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M2 14L6 10L10 14L14 8L18 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+              <span className={styles.mediaUrl}>{event.imageUrl}</span>
+            </div>
           )}
 
-          <div className={styles.metaInfo}>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Type:</span>
+          {/* Meta Grid */}
+          <div className={styles.metaGrid}>
+            <div className={styles.metaCard}>
+              <span className={styles.metaLabel}>Type</span>
               <span className={styles.metaValue}>{event.type}</span>
             </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Best Time:</span>
+            <div className={styles.metaCard}>
+              <span className={styles.metaLabel}>Best Time</span>
               {isEditing ? (
                 <input
                   type="text"
                   value={editBestTime}
                   onChange={(e) => setEditBestTime(e.target.value)}
-                  className={styles.timeInput}
-                  placeholder="e.g., 10am EST"
+                  className={styles.metaInput}
+                  placeholder="10am EST"
                 />
               ) : (
                 <span className={styles.metaValue}>{event.bestTime}</span>
@@ -478,8 +368,9 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
             </div>
           </div>
 
+          {/* Notes */}
           <div className={styles.notesSection}>
-            <strong className={styles.notesLabel}>Notes:</strong>
+            <span className={styles.notesLabel}>Notes</span>
             {isEditing ? (
               <textarea
                 value={editNotes}
@@ -488,28 +379,165 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
                 placeholder="Additional notes..."
                 rows={3}
               />
+            ) : event.notes ? (
+              <div className={styles.notesContent}>{event.notes}</div>
             ) : (
-              event.notes && <div className={styles.notes}>{event.notes}</div>
+              <div className={styles.notesEmpty}>No notes</div>
             )}
           </div>
 
+          {/* Edit Actions */}
           {isEditing && (
             <div className={styles.editActions}>
-              <button
-                className={styles.cancelButton}
-                onClick={handleCancelEdit}
-              >
+              <button className={styles.cancelButton} onClick={handleCancelEdit}>
                 Cancel
               </button>
-              <button
-                className={styles.saveButton}
-                onClick={handleSave}
-              >
+              <button className={styles.saveButton} onClick={handleSave}>
                 Save Changes
               </button>
             </div>
           )}
         </div>
+
+        {/* Auth Overlay */}
+        {showAuthUI && (
+          <div className={styles.authOverlay}>
+            <div className={styles.authCard}>
+              {/* Auth Options */}
+              {authState === 'options' && (
+                <>
+                  <div className={styles.authIcon}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="24" r="20" stroke="url(#lockGradient)" strokeWidth="2"/>
+                      <rect x="18" y="22" width="12" height="10" rx="2" stroke="url(#lockGradient)" strokeWidth="2"/>
+                      <path d="M21 22V18C21 16.3431 22.3431 15 24 15C25.6569 15 27 16.3431 27 18V22" stroke="url(#lockGradient)" strokeWidth="2" strokeLinecap="round"/>
+                      <defs>
+                        <linearGradient id="lockGradient" x1="4" y1="4" x2="44" y2="44">
+                          <stop stopColor="#9945FF"/>
+                          <stop offset="1" stopColor="#14F195"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                  <h4 className={styles.authTitle}>Unlock to Edit</h4>
+                  {authError && <p className={styles.authError}>{authError}</p>}
+                  <div className={styles.authButtons}>
+                    {isSupported && (
+                      <button
+                        className={styles.authButtonPrimary}
+                        onClick={() => hasPasskey ? setAuthState('touchid') : setAuthState('setup-password')}
+                      >
+                        {hasPasskey ? 'Use TouchID' : 'Set up TouchID'}
+                      </button>
+                    )}
+                    <button
+                      className={styles.authButtonSecondary}
+                      onClick={() => setAuthState('password')}
+                    >
+                      Use Password
+                    </button>
+                  </div>
+                  <button className={styles.authCancel} onClick={handleCancelAuth}>
+                    Cancel
+                  </button>
+                </>
+              )}
+
+              {/* TouchID in progress */}
+              {authState === 'touchid' && (
+                <div className={styles.authLoading}>
+                  <div className={styles.authSpinner}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="24" r="20" stroke="rgba(153, 69, 255, 0.2)" strokeWidth="2"/>
+                      <path d="M24 4C35.0457 4 44 12.9543 44 24" stroke="url(#spinnerGradient)" strokeWidth="2" strokeLinecap="round">
+                        <animateTransform attributeName="transform" type="rotate" from="0 24 24" to="360 24 24" dur="1s" repeatCount="indefinite"/>
+                      </path>
+                      <defs>
+                        <linearGradient id="spinnerGradient" x1="24" y1="4" x2="44" y2="24">
+                          <stop stopColor="#9945FF"/>
+                          <stop offset="1" stopColor="#14F195"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                  <p>Waiting for TouchID...</p>
+                  <button className={styles.authCancel} onClick={() => setAuthState('options')}>
+                    Cancel
+                  </button>
+                </div>
+              )}
+
+              {/* TouchID setup */}
+              {authState === 'setup-touchid' && (
+                <div className={styles.authLoading}>
+                  <div className={styles.authSpinner}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="24" r="20" stroke="rgba(153, 69, 255, 0.2)" strokeWidth="2"/>
+                      <path d="M24 4C35.0457 4 44 12.9543 44 24" stroke="url(#spinnerGradient2)" strokeWidth="2" strokeLinecap="round">
+                        <animateTransform attributeName="transform" type="rotate" from="0 24 24" to="360 24 24" dur="1s" repeatCount="indefinite"/>
+                      </path>
+                      <defs>
+                        <linearGradient id="spinnerGradient2" x1="24" y1="4" x2="44" y2="24">
+                          <stop stopColor="#9945FF"/>
+                          <stop offset="1" stopColor="#14F195"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                  <p>Setting up TouchID...</p>
+                  <span className={styles.authHint}>Follow the system prompt</span>
+                </div>
+              )}
+
+              {/* Password input */}
+              {(authState === 'password' || authState === 'setup-password') && (
+                <form onSubmit={handlePasswordSubmit} className={styles.authForm}>
+                  <div className={styles.authIcon}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="24" r="20" stroke="url(#keyGradient)" strokeWidth="2"/>
+                      <circle cx="20" cy="24" r="4" stroke="url(#keyGradient)" strokeWidth="2"/>
+                      <path d="M24 24H34M30 20V28" stroke="url(#keyGradient)" strokeWidth="2" strokeLinecap="round"/>
+                      <defs>
+                        <linearGradient id="keyGradient" x1="4" y1="4" x2="44" y2="44">
+                          <stop stopColor="#9945FF"/>
+                          <stop offset="1" stopColor="#14F195"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                  <h4 className={styles.authTitle}>
+                    {authState === 'setup-password' ? 'Verify to Set Up TouchID' : 'Enter Password'}
+                  </h4>
+                  {authState === 'setup-password' && (
+                    <p className={styles.authHint}>One-time setup for this device</p>
+                  )}
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setPasswordError(false);
+                    }}
+                    className={`${styles.authInput} ${passwordError ? styles.authInputError : ''}`}
+                    placeholder="Password"
+                    autoFocus
+                  />
+                  {passwordError && <p className={styles.authErrorText}>Incorrect password</p>}
+                  <button type="submit" className={styles.authButtonPrimary}>
+                    {authState === 'setup-password' ? 'Continue' : 'Unlock'}
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.authCancel}
+                    onClick={() => setAuthState('options')}
+                  >
+                    Back
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>,
     document.body

@@ -11,24 +11,24 @@ import type {
 // Technical positioning specs for AI x Solana
 export const technicalSpecs: AITechnicalSpec[] = [
   {
-    metric: 'Transaction Finality',
+    metric: 'Finality',
     solanaSpecs: '400ms → 150ms (Alpenglow)',
-    whyItMatters: 'Agent loop can make decisions in <200ms. Real-time execution for trading, arbitrage, autonomous actions.'
+    whyItMatters: 'Real-time agent decisions and execution'
   },
   {
-    metric: 'Cost per Transaction',
-    solanaSpecs: '~$0.0001-$0.0025',
-    whyItMatters: 'At 1000 agent actions/day = $0.10-$2.50. Micropayments and high-frequency operations become viable.'
+    metric: 'Cost',
+    solanaSpecs: '~$0.0001-$0.0025/tx',
+    whyItMatters: '1000 actions/day = $0.10-$2.50'
   },
   {
-    metric: 'Transaction Handling',
-    solanaSpecs: 'Optimistic execution',
-    whyItMatters: 'May need retry under load. With exponential backoff, p99 success <1s. Agent Kit handles this automatically.'
+    metric: 'Reliability',
+    solanaSpecs: 'Optimistic execution + auto-retry',
+    whyItMatters: 'Agent Kit handles retries automatically'
   },
   {
-    metric: 'State Access',
-    solanaSpecs: 'Account model (explicit data)',
-    whyItMatters: 'Predictable costs. No surprises when your agent reads large state.'
+    metric: 'State',
+    solanaSpecs: 'Account model',
+    whyItMatters: 'Predictable costs, no surprises'
   }
 ];
 
