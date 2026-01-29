@@ -1,10 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header, TabNavigation, Footer } from './components/layout';
 import { Modal } from './components/ui';
 import { ContentStrategyTab, AICampaignTab } from './views';
 import { useActiveTab, useModal, useCalendarEvents } from './hooks';
 import type { CalendarEvent } from './types';
 import styles from './App.module.css';
+
+const SESSION_KEY = 'solana-calendar-session';
+const SESSION_DURATION_MS = 60 * 60 * 1000; // 1 hour
+
+function hasActiveSession(): boolean {
+  const stored = sessionStorage.getItem(SESSION_KEY);
+  if (!stored) return false;
+  const timestamp = parseInt(stored, 10);
+  if (isNaN(timestamp)) return false;
+  return Date.now() - timestamp <= SESSION_DURATION_MS;
+}
 
 // Header configuration
 const headerConfig = {
@@ -40,6 +51,12 @@ function App() {
   const { isOpen, event, openModal, closeModal } = useModal();
   const { events, updateEvent, getEventById, hasEdits, exportToCode } = useCalendarEvents();
   const [exportStatus, setExportStatus] = useState<'idle' | 'copied'>('idle');
+  const [isAuthenticated, setIsAuthenticated] = useState(hasActiveSession);
+
+  // Check session status periodically and when modal closes
+  useEffect(() => {
+    setIsAuthenticated(hasActiveSession());
+  }, [isOpen]);
 
   // Handler for exporting edits to clipboard
   const handleExport = async () => {
@@ -96,8 +113,8 @@ function App() {
 
       <Modal isOpen={isOpen} onClose={closeModal} event={event} onSave={handleSaveEvent} />
 
-      {/* Export button - appears when there are unsaved edits */}
-      {hasEdits && (
+      {/* Export button - appears when authenticated with edits */}
+      {hasEdits && isAuthenticated && (
         <button className={styles.exportButton} onClick={handleExport}>
           {exportStatus === 'copied' ? 'Copied!' : 'Export Edits'}
         </button>
