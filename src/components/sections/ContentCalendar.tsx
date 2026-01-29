@@ -1,111 +1,104 @@
-import { calendarEvents } from '../../data';
-import type { CalendarEvent } from '../../data/calendarEvents';
+import { calendarEvents } from '../../data/calendarEvents';
+import type { CalendarEvent } from '../../types';
 import styles from './ContentCalendar.module.css';
 
 interface ContentCalendarProps {
-  onEventClick: (eventId: string) => void;
+  onEventClick: (event: CalendarEvent) => void;
 }
 
-// Calendar structure: 30 days with assigned events
-const calendarDays: Array<{
-  day: number;
-  dayOfWeek: string;
-  events: string[];
-}> = [
-  { day: 1, dayOfWeek: 'Wed', events: ['demo1'] },
-  { day: 2, dayOfWeek: 'Thu', events: ['tip1'] },
-  { day: 3, dayOfWeek: 'Fri', events: ['meme1'] },
-  { day: 4, dayOfWeek: 'Sat', events: [] },
-  { day: 5, dayOfWeek: 'Sun', events: [] },
-  { day: 6, dayOfWeek: 'Mon', events: ['spotlight1'] },
-  { day: 7, dayOfWeek: 'Tue', events: ['demo2'] },
-  { day: 8, dayOfWeek: 'Wed', events: ['tip2'] },
-  { day: 9, dayOfWeek: 'Thu', events: ['meme2'] },
-  { day: 10, dayOfWeek: 'Fri', events: ['collab1'] },
-  { day: 11, dayOfWeek: 'Sat', events: [] },
-  { day: 12, dayOfWeek: 'Sun', events: [] },
-  { day: 13, dayOfWeek: 'Mon', events: ['demo3'] },
-  { day: 14, dayOfWeek: 'Tue', events: ['tip3'] },
-  { day: 15, dayOfWeek: 'Wed', events: ['spotlight2'] },
-  { day: 16, dayOfWeek: 'Thu', events: ['meme3'] },
-  { day: 17, dayOfWeek: 'Fri', events: ['demo4'] },
-  { day: 18, dayOfWeek: 'Sat', events: [] },
-  { day: 19, dayOfWeek: 'Sun', events: [] },
-  { day: 20, dayOfWeek: 'Mon', events: ['tip4'] },
-  { day: 21, dayOfWeek: 'Tue', events: ['collab2'] },
-  { day: 22, dayOfWeek: 'Wed', events: ['demo5'] },
-  { day: 23, dayOfWeek: 'Thu', events: ['meme4'] },
-  { day: 24, dayOfWeek: 'Fri', events: ['spotlight3'] },
-  { day: 25, dayOfWeek: 'Sat', events: [] },
-  { day: 26, dayOfWeek: 'Sun', events: [] },
-  { day: 27, dayOfWeek: 'Mon', events: ['tip5'] },
-  { day: 28, dayOfWeek: 'Tue', events: ['demo6'] },
-  { day: 29, dayOfWeek: 'Wed', events: ['meme5'] },
-  { day: 30, dayOfWeek: 'Thu', events: ['collab3'] },
-];
+// Week day headers
+const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+// Calendar starts on Saturday (day 1 = Feb 1, 2026 is a Sunday)
+// Adjust: Day 1 = Sunday, so we need 0 empty cells before day 1
+const startDayOffset = 0; // Sunday = 0
+
+// Event type to color class mapping
+const typeColors: Record<string, string> = {
+  Thread: styles.eventThread,
+  'Quick Tip': styles.eventTip,
+  Meme: styles.eventMeme,
+  Spotlight: styles.eventSpotlight,
+  Engagement: styles.eventEngagement,
+};
+
+// Legend items
 const legendItems = [
-  { type: 'Viral Demo', color: 'demo' },
-  { type: 'Tip', color: 'tip' },
-  { type: 'Meme', color: 'meme' },
-  { type: 'Spotlight', color: 'spotlight' },
-  { type: 'Collab', color: 'collab' },
+  { type: 'Thread', label: 'Thread' },
+  { type: 'Quick Tip', label: 'Tip' },
+  { type: 'Meme', label: 'Meme' },
+  { type: 'Spotlight', label: 'Spotlight' },
+  { type: 'Engagement', label: 'Engagement' },
 ];
-
-function getEventTypeClass(type: string): string {
-  const typeMap: Record<string, string> = {
-    'Viral Demo': styles.eventDemo,
-    'Tip': styles.eventTip,
-    'Meme': styles.eventMeme,
-    'Spotlight': styles.eventSpotlight,
-    'Collab': styles.eventCollab,
-  };
-  return typeMap[type] || styles.eventDefault;
-}
 
 export function ContentCalendar({ onEventClick }: ContentCalendarProps) {
+  // Generate calendar days (1-30)
+  const days = Array.from({ length: 30 }, (_, i) => i + 1);
+
+  // Calculate which day of week each date falls on
+  const getDayOfWeek = (day: number): string => {
+    const dayIndex = (startDayOffset + day - 1) % 7;
+    return weekDays[dayIndex];
+  };
+
   return (
     <div className={styles.calendar}>
       {/* Legend */}
       <div className={styles.legend}>
         {legendItems.map((item) => (
           <div key={item.type} className={styles.legendItem}>
-            <span className={`${styles.legendDot} ${styles[`legend${item.color.charAt(0).toUpperCase() + item.color.slice(1)}`]}`} />
-            <span>{item.type}</span>
+            <span className={`${styles.legendDot} ${typeColors[item.type]}`} />
+            <span>{item.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Week Headers */}
+      <div className={styles.weekHeaders}>
+        {weekDays.map((day) => (
+          <div key={day} className={styles.weekHeader}>
+            {day}
           </div>
         ))}
       </div>
 
       {/* Calendar Grid */}
       <div className={styles.grid}>
-        {calendarDays.map((dayData) => (
-          <div
-            key={dayData.day}
-            className={`${styles.day} ${dayData.events.length === 0 ? styles.dayEmpty : ''}`}
-          >
-            <div className={styles.dayHeader}>
-              <span className={styles.dayNumber}>{dayData.day}</span>
-              <span className={styles.dayOfWeek}>{dayData.dayOfWeek}</span>
-            </div>
-            <div className={styles.dayEvents}>
-              {dayData.events.map((eventId) => {
-                const event = calendarEvents[eventId] as CalendarEvent | undefined;
-                if (!event) return null;
-                return (
+        {/* Empty cells for offset (if month doesn't start on Sunday) */}
+        {Array.from({ length: startDayOffset }).map((_, i) => (
+          <div key={`empty-${i}`} className={styles.dayEmpty} />
+        ))}
+
+        {/* Calendar days */}
+        {days.map((day) => {
+          const events = calendarEvents[day] || [];
+          const hasEvents = events.length > 0;
+          const dayOfWeek = getDayOfWeek(day);
+          const isWeekend = dayOfWeek === 'Sat' || dayOfWeek === 'Sun';
+
+          return (
+            <div
+              key={day}
+              className={`${styles.day} ${!hasEvents ? styles.dayNoEvents : ''} ${isWeekend ? styles.dayWeekend : ''}`}
+            >
+              <div className={styles.dayHeader}>
+                <span className={styles.dayNumber}>{day}</span>
+              </div>
+              <div className={styles.dayEvents}>
+                {events.map((event) => (
                   <button
-                    key={eventId}
-                    className={`${styles.event} ${getEventTypeClass(event.type)}`}
-                    onClick={() => onEventClick(eventId)}
-                    aria-label={`${event.title} - ${event.type}`}
+                    key={event.id}
+                    className={`${styles.event} ${typeColors[event.type] || ''}`}
+                    onClick={() => onEventClick(event)}
+                    title={`${event.title} - ${event.bestTime}`}
                   >
                     <span className={styles.eventTitle}>{event.title}</span>
-                    <span className={styles.eventType}>{event.type}</span>
                   </button>
-                );
-              })}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

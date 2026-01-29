@@ -6,11 +6,13 @@ import {
   tweetExamples,
   successMetrics,
   collaborationTargets,
+  contentPillars,
 } from '../data';
+import type { CalendarEvent } from '../types';
 import styles from './TabViews.module.css';
 
 interface ContentStrategyTabProps {
-  onEventClick: (eventId: string) => void;
+  onEventClick: (event: CalendarEvent) => void;
 }
 
 export function ContentStrategyTab({ onEventClick }: ContentStrategyTabProps) {
@@ -69,7 +71,23 @@ export function ContentStrategyTab({ onEventClick }: ContentStrategyTabProps) {
         <p className={styles.sectionDesc}>
           A strategic content calendar balancing viral demos, educational tips, memes, developer spotlights, and collaborations.
         </p>
+
         <ContentCalendar onEventClick={onEventClick} />
+
+        <h4 className={styles.subheading}>Content Pillars</h4>
+        <div className={styles.pillarGrid}>
+          {contentPillars.map((pillar) => (
+            <PillarCard
+              key={pillar.name}
+              icon={pillar.icon}
+              title={pillar.name}
+              description={pillar.description}
+              indicator={pillar.frequency}
+              indicatorType={pillar.priority === 'High' ? 'viral' : 'bookmarks'}
+              compact
+            />
+          ))}
+        </div>
       </CollapsibleSection>
 
       {/* Example Tweets Section */}

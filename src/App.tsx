@@ -2,7 +2,6 @@ import { Header, TabNavigation, Footer } from './components/layout';
 import { Modal } from './components/ui';
 import { ContentStrategyTab, AICampaignTab } from './views';
 import { useActiveTab, useModal } from './hooks';
-import { calendarEvents } from './data';
 import type { CalendarEvent } from './types';
 import styles from './App.module.css';
 
@@ -39,15 +38,9 @@ function App() {
   const { activeTab, switchTab } = useActiveTab('q1');
   const { isOpen, event, openModal, closeModal } = useModal();
 
-  // Handler for calendar event clicks (to be passed to calendar component)
-  const handleEventClick = (eventId: string) => {
-    const eventData = calendarEvents[eventId];
-    if (eventData) {
-      openModal({
-        ...eventData,
-        id: eventId,
-      } as CalendarEvent);
-    }
+  // Handler for calendar event clicks (receives full event object)
+  const handleEventClick = (eventData: CalendarEvent) => {
+    openModal(eventData);
   };
 
   return (

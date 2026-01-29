@@ -1,646 +1,857 @@
 export interface CalendarEvent {
+  id: string;
   title: string;
-  type: string;
-  time: string;
+  type: 'Thread' | 'Quick Tip' | 'Meme' | 'Spotlight' | 'Engagement';
+  bestTime: string;
   content: string;
   notes: string;
-  image: string | null;
+  imageUrl: string | null;
 }
 
-export const calendarEvents: Record<string, CalendarEvent> = {
-  // Viral Demos - High Bookmark Content (Based on Jan 2026 Report)
-  demo1: {
-    title: "AI Agent on Solana",
-    type: "Viral Demo",
-    time: "Best time: 10am EST",
-    content: `Just built an AI trading agent on Solana in 15 minutes.
-
-[Screen recording showing]
--> Reusing existing audited programs
--> No new security audits needed
--> Agent executing swaps autonomously
-
-Solana's program model = safer, faster AI dev.
-
-This is why 9-10 figure AI startups are choosing Solana in 2026.
-
-Code walkthrough`,
-    notes:
-      "Demo the AI dev advantage from the report. Show program reuse without new audits. Tag AI-native projects building on Solana.",
-    image: null,
-  },
-  demo2: {
-    title: "Alpenglow: 150ms Finality",
-    type: "Viral Demo",
-    time: "Best time: 10am EST",
-    content: `Sub-second finality is here.
-
-[Video: tx confirmation timer showing <150ms]
-
-Alpenglow upgrade brings:
--> 150ms finality (down from 400ms)
--> 80% reduced validator costs
--> Consumer hardware support
-
-You can now run a validator at home.
-
-The 1M TPS future is loading...`,
-    notes:
-      "Key upgrade from report. Emphasize the 80% cost reduction and home node support. This changes validator economics.",
-    image: null,
-  },
-  demo3: {
-    title: "Arcis: Encrypted Compute",
-    type: "Viral Demo",
-    time: "Best time: 10am EST",
-    content: `Adding privacy to your Solana app just got stupid easy.
-
-[Screen recording of Arcis compiler]
-
-Arcium just launched Arcis:
--> Write normal Rust
--> Compile to encrypted compute
--> Privacy without complexity
-
-Before: Months of ZK expertise
-After: One compiler flag
-
-Privacy-first apps are about to explode.`,
-    notes:
-      "Showcase Arcium's new Arcis compiler from the report. Coordinate with @Arcium for RT. High bookmark potential.",
-    image: null,
-  },
-  demo4: {
-    title: "Gasless Transactions with Kora",
-    type: "Viral Demo",
-    time: "Best time: 10am EST",
-    content: `Your users don't need SOL anymore.
-
-[Demo showing tx paid in USDC]
-
-Kora enables fee payment in ANY token:
--> USDC for stablecoin apps
--> Your project token
--> Whatever makes sense
-
-No more "bridge SOL first" friction.
-
-The $1T stablecoin market just got easier to build for.`,
-    notes:
-      "Gasless feature from report. Perfect for stablecoin app devs. Show code example in thread.",
-    image: null,
-  },
-  demo5: {
-    title: "February Recap",
-    type: "Viral Demo",
-    time: "Best time: 10am EST",
-    content: `What @solana_devs shipped in February:
-
-[Animated infographic]
--> AI integration guides
--> Alpenglow deep dives
--> Privacy tool tutorials
--> RWA/DeFi spotlights
-
-Most bookmarked: AI Agent Demo
-Most replied: Memecoin RIP meme
-Biggest collab: Arcium AMA
-
-What do you want to see in March?`,
-    notes:
-      "Meta-content recap. Update with actual metrics. Drives engagement and feedback.",
-    image: null,
-  },
-
-  // Collabs & Culture - Inside Jokes (Mert preserved!)
-  collab1: {
-    title: "Mert Photo",
-    type: "Collab & Culture",
-    time: "Best time: Morning",
-    content: "[no caption - just image]",
-    notes:
-      "Coordinate with Mert for funny/embarassing photo. Post without context. IYKYK energy. Let the community do the talking.",
-    image:
-      "https://media.licdn.com/dms/image/v2/D5605AQFLXREI2mr6yw/videocover-low/videocover-low/0/1732873715277?e=2147483647&v=beta&t=ESTmf4qFHkK22HQ1DqGJ_DrOZtks_ghanYdqJF44pQw",
-  },
-  collab2: {
-    title: "Pump Fund $3M Hackathon",
-    type: "Collab & Culture",
-    time: "Best time: Evening",
-    content: `$3M in prizes. 72 hours to ship.
-
-Pump Fund hackathon kicks off this weekend.
-
-What we're watching for:
--> AI agent integrations
--> Prediction market tools
--> Privacy-first apps
-
-Who's building? Drop your project below`,
-    notes:
-      "Pump Fund hackathon from report. Great engagement driver. Follow up with winner spotlights.",
-    image: null,
-  },
-  collab3: {
-    title: "Arcium Privacy AMA",
-    type: "Collab & Culture",
-    time: "Best time: 3pm EST",
-    content: `Tomorrow at 3pm EST: AMA with @Arcium
-
-They just launched Arcis - the Rust-to-encrypted-compute compiler.
-
-Bring your questions about:
--> Adding privacy to existing apps
--> Encrypted AI inference
--> Compliant private transactions
-
-Drop questions below`,
-    notes:
-      "Coordinate with Arcium team. Privacy tools are hot topic from report. Cross-pollinate audiences.",
-    image: null,
-  },
-  collab4: {
-    title: "Backpack MadLads Celebration",
-    type: "Collab & Culture",
-    time: "Best time: Morning",
-    content: `MadLads holders waking up to that Backpack airdrop like:
-
-[Celebration meme]
-
-Congrats to the community. Now build something with it`,
-    notes: "Backpack airdrop from report. Timely celebration post. Tag @backaborated.",
-    image: null,
-  },
-  collab5: {
-    title: "Parcl Real Estate Bets",
-    type: "Collab & Culture",
-    time: "Best time: Afternoon",
-    content: `POV: You're betting on Miami real estate prices from your couch
-
-[Quote tweet @Parcl]
-
-Prediction markets + real estate = Parcl
-
-Polymarket energy but for property. The future is weird and I'm here for it.`,
-    notes:
-      "Parcl/Polymarket integration from report. Fun angle on prediction markets expansion.",
-    image: null,
-  },
-  collab6: {
-    title: "SKR Token Launch",
-    type: "Collab & Culture",
-    time: "Best time: Evening",
-    content: `SKR is live
-
-Solana Mobile's token just launched.
-
-To the builders who've been shipping mobile-first apps since day 1: this one's for you.
-
-What are you building for the 1.4M Saga devices?`,
-    notes:
-      "SKR launch from report. Celebrate mobile ecosystem. Drives engagement from mobile devs.",
-    image: null,
-  },
-
-  // Events
-  accelerate: {
-    title: "Solana Accelerate APAC @ Consensus HK",
-    type: "Event",
-    time: "Feb 11, 2026 - Hong Kong",
-    content: `We're in Hong Kong.
-
-Solana Accelerate APAC kicks off at Consensus today.
-
-Focus: AI onboarding for the APAC market
-
-What we're covering:
--> Agent Kit demos
--> AI Trading Competition preview
--> Meet the Solana ecosystem
-
-Attending? Find us at the booth.
-
-Not there? Follow along - threads incoming
-
-Register: solana.com/events`,
-    notes:
-      "Accelerate APAC announced Jan 2026. APAC AI market is massive. Focus on AI onboarding. Link: lu.ma/sol-accelerate-hk",
-    image: null,
-  },
-
-  // Threads (Based on Jan 2026 Report)
-  thread1: {
-    title: "Why Solana Wins for AI Development",
-    type: "Thread (5-8 tweets)",
-    time: "Best time: 10am EST",
-    content: `AI developers are choosing Solana. Here's why:
-
-1/ Program reuse without new audits
-Solana's model lets AI agents use existing audited contracts. No security review for each integration.
-
-2/ Speed matters for agents
-AI needs real-time execution. 400ms beats 12 seconds every time.
-
-3/ Cost enables experimentation
-$0.00025/tx means your agent can iterate without burning cash.
-
-4/ Native tooling emerging
-AI-native SDKs for trading, payments, sports betting all shipping now.
-
-The 9-10 figure AI startups of 2026 are building here.
-
-What's your AI use case? Poll below`,
-    notes:
-      "Key insight from report on AI dev advantages. Include poll for engagement. Tag AI projects building on Solana.",
-    image: null,
-  },
-  thread2: {
-    title: "Firedancer: The Multi-Client Era",
-    type: "Thread (8-10 tweets)",
-    time: "Best time: 10am EST",
-    content: `Solana's multi-client era is here.
-
-Frankendancer (the Firedancer hybrid) now runs on ~26% of validators.
-
-Full Firedancer in final security audits - public release mid-2026.
-
--> 1M TPS achieved in test environments
--> Independent validator client
--> No more single points of failure
-
-What this means for developers:
-
-1/ Network resilience
-No single point of failure. Your app survives client bugs.
-
-2/ Performance headroom
-High-throughput apps have room to scale.
-
-3/ Client diversity
-Choose your validator stack.
-
-The multi-client future is shipping.`,
-    notes:
-      "Firedancer/network upgrades. Frankendancer is live (~26% validators), full Firedancer in security audit for mid-2026 release. Tag @aeyakovenko.",
-    image: null,
-  },
-  thread3: {
-    title: "SEC Clarity: What Devs Need to Know",
-    type: "Thread (5-7 tweets)",
-    time: "Best time: 10am EST",
-    content: `The Solana Policy Institute just dropped something important.
-
-Post-Tornado Cash, they're pushing SEC for DeFi developer protections.
-
-Key points:
-
-1/ Writing code != money transmission
-Developers shouldn't be liable for how others use open source.
-
-2/ Clear safe harbors needed
-We need bright-line rules, not regulation by enforcement.
-
-3/ Innovation requires clarity
-Uncertainty kills startups before they launch.
-
-What this means for you:
--> Keep building
--> Stay informed
--> Engage with policy
-
-Full breakdown in thread`,
-    notes:
-      "Regulatory advocacy from report. Important for dev awareness. Link to Solana Policy Institute.",
-    image: null,
-  },
-  thread4: {
-    title: "Gasless Transactions: The Complete Guide",
-    type: "Thread (6-8 tweets)",
-    time: "Best time: 10am EST",
-    content: `Your users don't need SOL to use your app anymore.
-
-Gasless transactions are here. Here's how to implement:
-
-1/ What changed
-Fees can now be paid in any token - USDC, your project token, whatever.
-
-2/ Why it matters
-No more "bridge SOL first" friction. Stablecoin apps just got way easier.
-
-3/ How to implement
-[Code snippet using Kora]
-
-4/ Use cases
--> Stablecoin payments
--> Gaming (fees in game token)
--> Enterprise (USDC only)
-
-The $1T stablecoin prediction starts here.`,
-    notes:
-      "Gasless feature from report. Include working code example. High bookmark potential.",
-    image: null,
-  },
-  thread5: {
-    title: "RWA on Solana: The Full Stack",
-    type: "Thread (6-8 tweets)",
-    time: "Best time: 10am EST",
-    content: `Tokenized assets just hit different on Solana.
-
-Ondo Finance launched 200+ U.S. stocks and ETFs this month.
-
-Here's the full RWA stack:
-
-1/ Ondo Finance
-200+ tokenized securities. Traditional finance on-chain.
-
-2/ Fireblocks Partnership
-Institutional treasury management. Enterprise-grade custody.
-
-3/ USDT Liquidity
-Unified across the ecosystem. Deep stablecoin rails.
-
-4/ PropAMMs
-Automated market making for real estate. Solving the liquidity problem.
-
-RWA yields are hitting new highs.
-
-What are you building in this space?`,
-    notes:
-      "RWA/DeFi growth from report. Tag @OndoFinance, @Fireblocks. Institutional angle.",
-    image: null,
-  },
-
-  // Spotlights (spotlight1-8 used by calendar)
-  spotlight1: {
-    title: "Spotlight: Ondo Finance RWA",
-    type: "Ecosystem Highlight",
-    time: "Best time: 2pm EST",
-    content: `200+ U.S. stocks and ETFs just landed on Solana.
-
-Ondo Finance is bringing traditional finance on-chain:
-
--> Tokenized treasuries
--> Blue chip stocks
--> Major ETFs
-
-Why Solana?
-- Sub-second settlement
-- Pennies per transaction
-- Token Extensions for compliance
-
-RWA yields are hitting new highs.
-
-The institutional wave is here.`,
-    notes:
-      "Tag @OndoFinance. This is the RWA narrative from the report. Institutional legitimacy angle.",
-    image: null,
-  },
-  spotlight2: {
-    title: "Spotlight: Arcium Privacy",
-    type: "Privacy Tools",
-    time: "Best time: 3pm EST",
-    content: `Arcium just made privacy accessible to every Solana dev.
-
-Their new Arcis compiler:
--> Write normal Rust
--> Compile to encrypted compute
--> No ZK expertise required
-
-Use cases now possible:
-- Private AI inference
-- Encrypted payroll
-- Confidential trading
-- Compliant DeFi
-
-Privacy + compliance. Finally solving both.`,
-    notes:
-      "Tag @Arcium. From the report - privacy tools section. Coordinate for RT.",
-    image: null,
-  },
-  spotlight3: {
-    title: "Spotlight: DFlow Prediction Markets",
-    type: "Tool Highlight",
-    time: "Best time: 2pm EST",
-    content: `DFlow just dropped a composable prediction markets API.
-
-What you can build:
--> Custom market interfaces
--> Real estate bets (Parcl integration)
--> Sports prediction apps
--> Event-driven DeFi
-
-Phantom is already using it (powered by Kalshi).
-
-Prediction markets are booming. The infrastructure is finally here.`,
-    notes:
-      "DFlow API from report. Tag @daborated. Prediction markets expansion angle.",
-    image: null,
-  },
-  spotlight4: {
-    title: "Spotlight: Phantom + Kalshi",
-    type: "Partnership Highlight",
-    time: "Best time: 2pm EST",
-    content: `Prediction markets just went mainstream.
-
-Phantom now has native prediction markets, powered by Kalshi.
-
-Bet on:
--> Elections
--> Sports
--> Economic events
--> Pop culture
-
-All from your wallet. No new app needed.
-
-The Polymarket energy hits different when it's in your daily driver.`,
-    notes:
-      "Phantom/Kalshi from report. Tag @phantom. Prediction markets expansion.",
-    image: null,
-  },
-  spotlight5: {
-    title: "Spotlight: FairScale Reputation",
-    type: "Tool Spotlight",
-    time: "Best time: 2pm EST",
-    content: `Airdrops keep getting farmed. FairScale is the fix.
-
-Their new reputation infrastructure:
--> FairScore API for wallet scoring
--> Sybil detection built-in
--> Whitelist generation
-
-Use cases:
-- Fairer airdrops
-- Bot-resistant launches
-- Community validation
-
-Join their FAIRathon for prizes.
-
-Reputation > randomness.`,
-    notes:
-      "FairScale from report. Tag @fairscalexyz. Promote FAIRathon engagement.",
-    image: null,
-  },
-  spotlight6: {
-    title: "Spotlight: Helius Token History API",
-    type: "Tool Spotlight",
-    time: "Best time: 2pm EST",
-    content: `Helius just dropped unified token account histories.
+// Calendar events from Notion CMS
+export const calendarEvents: Record<number, CalendarEvent[]> = {
+  1: [
+    {
+      id: 'day1-thread',
+      title: 'Firedancer is Live',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `Solana just ended its single-client era.
+
+After 3 years of development, Firedancer is live on mainnet:
+
+→ 50,000+ blocks produced
+→ 100+ days running
+→ 26% of validators now on Frankendancer
+→ 1M TPS in test environments
+
+What this means for you as a developer:
+
+1/ Network resilience: No more single point of failure
+2/ Performance headroom: Your high-throughput apps have room to scale
+3/ Client diversity: Choose your validator stack
+
+Firedancer isn't just faster—it's a complete rewrite in C that rethinks how validators work.
+
+The multi-client future is here.`,
+      notes: 'Link to Jump Crypto announcement. Tag @aaboronkov. Include architecture diagram if possible.',
+      imageUrl: null,
+    },
+  ],
+  2: [
+    {
+      id: 'day2-engagement',
+      title: 'Mert Photo',
+      type: 'Engagement',
+      bestTime: 'All Day',
+      content: '[no caption - just a comedically way-too-close-up selfie]',
+      notes: 'Coordinate with Mert + Helius to drive engagement early',
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D5605AQFLXREI2mr6yw/videocover-low/videocover-low/0/1732873715277',
+    },
+    {
+      id: 'day2-tip',
+      title: 'Encrypted Token Balances',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `New superpower unlocked: encrypted token balances
+
+Token Extensions now support ZK-powered privacy:
+
+• Encrypted balances
+• Private transfers
+• Confidential minting/burning
+
+Use cases hitting production:
+→ B2B payments (competitors can't see your volume)
+→ Encrypted payroll
+→ Compliant institutional transfers`,
+      notes: 'Link to Helius Confidential Balances blog. This is bleeding edge.',
+      imageUrl: null,
+    },
+  ],
+  3: [
+    {
+      id: 'day3-spotlight',
+      title: 'MCPay — Hackathon Winner',
+      type: 'Spotlight',
+      bestTime: '2pm EST',
+      content: `Meet MCPay — Cypherpunk Hackathon winner
+
+The problem: Payment infrastructure is fragmented across chains.
+
+Their solution: Open payment rails that work everywhere.
+
+What impressed the judges:
+→ Chain-agnostic architecture
+→ Developer-first API design
+→ Production-ready in weeks, not months
+
+The team is now in Colosseum's accelerator with $250K in pre-seed.
+
+9,000 hackers competed. 1,576 projects submitted. They won.`,
+      notes: 'Tag MCPay team. Get quote from founders if possible.',
+      imageUrl: null,
+    },
+  ],
+  4: [
+    {
+      id: 'day4-meme',
+      title: 'Fee Comparison',
+      type: 'Meme',
+      bestTime: '11am EST',
+      content: `Solana daily fees: $1.03M
+Base daily fees: $0.8M
+Arbitrum daily fees: $0.5M
+
+Solana TVL: $9.2B
+Base TVL: $5.15B
+
+Solana DEX volume: $118B (30 days)
+Ethereum DEX volume: $40B (30 days)
+
+4 consecutive months of dominance.
+
+L2s are in a race to the bottom on fees.
+Solana is monetizing activity.
+
+Different games. Different outcomes.`,
+      notes: 'Create clean comparison graphic. Data from DeFiLlama/Helius.',
+      imageUrl: null,
+    },
+    {
+      id: 'day4-tip',
+      title: 'ZK Compression Costs',
+      type: 'Quick Tip',
+      bestTime: '4pm EST',
+      content: `Creating 1M accounts on Solana:
+
+❌ Without compression: ~$250,000
+✅ With ZK compression: ~$50
+
+That's a 5000x cost reduction.`,
+      notes: 'Link to Light Protocol. Massive cost savings = high shareability.',
+      imageUrl: null,
+    },
+  ],
+  5: [
+    {
+      id: 'day5-thread',
+      title: 'AI Agents on Solana',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `AI agents can hold Solana wallets.
+AI agents cannot open bank accounts.
+
+This is why Solana is becoming the settlement layer for the non-human economy.
+
+Here's how to build one...`,
+      notes: 'Cross-promote with AI x Crypto campaign. Link to Agent Kit repo.',
+      imageUrl: null,
+    },
+  ],
+  6: [
+    {
+      id: 'day6-engagement',
+      title: 'QT Hackathon Winner',
+      type: 'Engagement',
+      bestTime: '1pm EST',
+      content: `[Quote tweet a Cypherpunk hackathon winner]
+
+"9,000 hackers. 1,576 submissions. This one stood out.
+
+[Specific praise for what they built]
+
+The hackathon → accelerator → funding pipeline is real."`,
+      notes: 'Find recent tweet from MCPay, Unruggable, TapeDrive, or Autonom team.',
+      imageUrl: null,
+    },
+  ],
+  7: [
+    {
+      id: 'day7-spotlight',
+      title: 'Unruggable Hardware Wallet',
+      type: 'Spotlight',
+      bestTime: '3pm EST',
+      content: `First Solana-only hardware wallet just shipped.
+
+Unruggable won the Cypherpunk Hackathon with a bold thesis:
+
+"Why does your hardware wallet need to support 47 chains you'll never use?"
+
+Their approach:
+→ Solana-native from silicon up
+→ Optimized for SPL tokens + NFTs
+→ Token Extensions support (confidential transfers!)
+→ Open source firmware
+
+Security through simplicity.`,
+      notes: 'Tag founders. Get product image.',
+      imageUrl: null,
+    },
+  ],
+  8: [
+    {
+      id: 'day8-thread',
+      title: 'Alpenglow: 150ms Finality',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `Solana block finality is about to go from 12 seconds → 150 milliseconds.
+
+Alpenglow is coming in early 2026. Here's why it matters:
+
+1/ Current state: ~12 second finality
+
+2/ Some apps NEED instant confirmation:
+→ Point-of-sale payments
+→ High-frequency trading
+→ Gaming (real-time actions)
+→ AI agent coordination
+
+3/ How Alpenglow achieves 150ms
+
+4/ Timeline: Mainnet early 2026
+
+The UX gap with Web2 is closing fast.`,
+      notes: 'Research Alpenglow technical details. Link to Solana docs.',
+      imageUrl: null,
+    },
+  ],
+  9: [
+    {
+      id: 'day9-engagement',
+      title: 'Dev Support Day',
+      type: 'Engagement',
+      bestTime: 'All Day',
+      content: `Search for and reply to developers asking Solana questions.
+
+Search terms:
+- "solana" + "how do I"
+- "anchor" + "error"
+- "@solana/web3.js" + "help"
+
+Goal: 10+ helpful replies today.`,
+      notes: 'Builds goodwill. Position @solana_devs as genuinely helpful.',
+      imageUrl: null,
+    },
+    {
+      id: 'day9-tip',
+      title: 'Transaction Retry Logic',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `35-40% of Solana transactions fail on first attempt.
+
+Don't panic. This is normal. Here's the fix...`,
+      notes: 'From Helius H1 2025 report. High save rate potential.',
+      imageUrl: null,
+    },
+  ],
+  10: [
+    {
+      id: 'day10-spotlight',
+      title: 'Solana Agent Kit v2.0',
+      type: 'Spotlight',
+      bestTime: '2pm EST',
+      content: `The easiest way to build AI agents on Solana
+
+Solana Agent Kit just hit v2.0:
+
+→ Wallet management out of the box
+→ Token swaps via Jupiter
+→ NFT operations
+→ DeFi integrations (lending, staking)
+→ Compressed token support
+
+Get started in 5 minutes.`,
+      notes: 'Verify CLI command is correct. Ties to AI campaign.',
+      imageUrl: null,
+    },
+  ],
+  11: [
+    {
+      id: 'day11-meme',
+      title: 'Stablecoin Growth',
+      type: 'Meme',
+      bestTime: '11am EST',
+      content: `[Drake meme format]
+
+Drake rejecting: "$16B stablecoins on Solana"
+Drake approving: "PayPal processes more PYUSD on Solana than Ethereum"
+
+194% YoY growth. PYUSD up 680%.
+
+The payments rails are being rebuilt.`,
+      notes: 'Use real data from Chainstack blog. Facts > snark.',
+      imageUrl: null,
+    },
+  ],
+  12: [
+    {
+      id: 'day12-thread',
+      title: 'Token Extensions Guide',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `Token Extensions are the most underrated Solana feature.
+
+Here's what you can do that no other chain supports natively:
+
+1/ Transfer Hooks - Run custom logic on every transfer
+2/ Confidential Transfers - ZK-encrypted balances
+3/ Transfer Fees - Built-in fee collection
+4/ Permanent Delegate - Regulatory compliance
+5/ Non-Transferable Tokens - Soulbound tokens, natively
+6/ Interest-Bearing Tokens - Yield-bearing stablecoins`,
+      notes: 'Evergreen educational content. High bookmark potential.',
+      imageUrl: null,
+    },
+  ],
+  13: [
+    {
+      id: 'day13-tip',
+      title: 'Anchor vs Pinocchio',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `"Should I use Anchor or Pinocchio?"
+
+Depends on what you're building.
+
+Anchor: Great DX, more abstraction
+Pinocchio: 50% smaller programs, steeper curve`,
+      notes: 'Balanced take. Devs love framework debates.',
+      imageUrl: null,
+    },
+    {
+      id: 'day13-engagement',
+      title: 'Show Your Build',
+      type: 'Engagement',
+      bestTime: '3pm EST',
+      content: `Let's talk.
+
+Drop what you're building on Solana in the replies.
+
+We'll RT the most interesting ones and help where we can.
+
+No project too small. Ship > Perfect.`,
+      notes: 'Engage with EVERY reply for at least 2 hours.',
+      imageUrl: null,
+    },
+  ],
+  14: [
+    {
+      id: 'day14-spotlight',
+      title: 'Weekly Builder Roundup',
+      type: 'Spotlight',
+      bestTime: '11am EST',
+      content: `What Solana devs shipped this week
+
+🏆 @[project1] launched [feature]
+🛠️ @[project2] open-sourced [tool]
+🚀 @[project3] hit [milestone]
+🎯 @[project4] won [hackathon/grant]
+📚 @[dev] published [tutorial/guide]
+
+Missed someone? Drop them below`,
+      notes: 'Curate throughout the week. DM projects before featuring.',
+      imageUrl: null,
+    },
+  ],
+  15: [
+    {
+      id: 'day15-thread',
+      title: 'Actions & Blinks',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `Solana Actions & Blinks are about to change how we interact with the internet.
+
+Any URL can now be a transaction endpoint.
+
+1/ The problem: Web3 UX is broken. Users leave your site → go to a wallet → sign → come back.
+
+2/ The solution: Blinks embed transactions anywhere. Twitter, Discord, email.
+
+3/ Real examples:
+→ Tip creators directly in tweets
+→ Mint NFTs from Discord
+→ Subscribe to newsletters with SOL
+
+The wallet-first era is ending. The action-first era is beginning.`,
+      notes: 'Link to Dialect docs. High bookmark potential.',
+      imageUrl: null,
+    },
+  ],
+  16: [
+    {
+      id: 'day16-tip',
+      title: 'Priority Fees',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `"My transaction keeps failing" — every Solana dev at some point.
+
+Here's the fix most tutorials skip:
+
+Priority fees. Not optional during high activity.`,
+      notes: 'Link to Helius priority fee estimator.',
+      imageUrl: null,
+    },
+    {
+      id: 'day16-engagement',
+      title: 'QT Ecosystem Win',
+      type: 'Engagement',
+      bestTime: '3pm EST',
+      content: `[Quote tweet an ecosystem project announcement]
+
+Add context: What makes this technically impressive?`,
+      notes: 'Find announcement from Jupiter, Marinade, Jito, or similar.',
+      imageUrl: null,
+    },
+  ],
+  17: [
+    {
+      id: 'day17-spotlight',
+      title: 'Pinocchio for Games',
+      type: 'Spotlight',
+      bestTime: '2pm EST',
+      content: `30+ games on Solana use Pinocchio instead of Anchor.
+
+Why? When every compute unit matters.
+
+Pinocchio produces programs 50%+ smaller than Anchor equivalents.
+
+Perfect for:
+→ Gaming (frame-rate sensitive)
+→ High-frequency trading
+→ Compute-intensive DeFi
+
+Most apps: Start with Anchor.
+Performance-critical apps: Consider Pinocchio.`,
+      notes: 'Balanced take - don\'t bash Anchor. Link to Pinocchio repo.',
+      imageUrl: null,
+    },
+  ],
+  18: [
+    {
+      id: 'day18-meme',
+      title: 'NFT Minting Costs',
+      type: 'Meme',
+      bestTime: '4pm EST',
+      content: `Cost to mint 10,000 NFTs:
+
+Ethereum: $50,000+
+Polygon: $500
+Solana: $20
+Solana (compressed): $0.50
+
+The math isn't even close anymore.`,
+      notes: 'Verify current numbers. Simple visual comparison.',
+      imageUrl: null,
+    },
+    {
+      id: 'day18-thread',
+      title: 'ZK Compression Deep Dive',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `DRiP distributed 140M+ NFTs on Solana.
+
+Without state compression, that would cost ~$4.2M in rent.
+With compression: ~$50K.
+
+Here's how ZK compression actually works:
+
+1/ Traditional Solana: Every account = 0.00203 SOL rent
+
+2/ Compressed accounts: Merkle tree stores hash, not full data. Cost drops 1000x+.
+
+3/ Use cases unlocked:
+→ Loyalty programs
+→ Gaming inventories
+→ Social graphs
+→ IoT/DePIN`,
+      notes: 'Real numbers from DRiP case study. Link to Light Protocol.',
+      imageUrl: null,
+    },
+  ],
+  19: [
+    {
+      id: 'day19-thread',
+      title: 'AI Trading Volume',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `AI agents drove $8B+ in trading volume on Solana last month.
+
+Not a typo. Eight billion dollars.
+
+Here's what's happening:
+
+1/ AI agents can hold Solana wallets. They can't open bank accounts.
+
+2/ What they're doing:
+→ Arbitrage across DEXs
+→ Automated portfolio rebalancing
+→ Social sentiment trading
+
+3/ Why Solana:
+→ 400ms blocks = real-time reactions
+→ $0.00025 per tx = high-frequency viable
+→ Composability = full DeFi stack access
+
+The robots are already here.`,
+      notes: 'Ties directly to Q3 AI campaign. Link to Agent Kit.',
+      imageUrl: null,
+    },
+  ],
+  20: [
+    {
+      id: 'day20-engagement',
+      title: 'Pain Points Survey',
+      type: 'Engagement',
+      bestTime: '3pm EST',
+      content: `What's the most frustrating part of building on Solana right now?
+
+Drop your honest answer below. We're listening.
+
+(And yes, we'll actually do something about it)`,
+      notes: 'Respond to EVERY comment. Forward insights to DevRel team.',
+      imageUrl: null,
+    },
+    {
+      id: 'day20-tip',
+      title: 'Lazy Initialization',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `Stop paying rent for accounts you don't need yet.
+
+Lazy initialization pattern saves costs.`,
+      notes: 'Show before/after cost comparison if possible.',
+      imageUrl: null,
+    },
+  ],
+  21: [
+    {
+      id: 'day21-spotlight',
+      title: 'Weekly Builder Roundup',
+      type: 'Spotlight',
+      bestTime: '11am EST',
+      content: `What Solana devs shipped this week
+
+🏆 @[project1] launched [feature]
+🛠️ @[project2] open-sourced [tool]
+🚀 @[project3] hit [milestone]
+🎯 @[project4] received [grant/funding]
+📚 @[dev] published [tutorial]
+
+Missed someone? Drop them below`,
+      notes: 'Curate throughout the week. Recurring series builds habit.',
+      imageUrl: null,
+    },
+  ],
+  22: [
+    {
+      id: 'day22-thread',
+      title: 'DePIN Opportunity',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `DePIN is quietly becoming Solana's killer use case.
+
+Helium. Hivemapper. Render. The infrastructure is being rebuilt.`,
+      notes: 'Strong narrative angle. Link to each project.',
+      imageUrl: null,
+    },
+    {
+      id: 'day22-tip',
+      title: 'PDAs Explained',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `PDAs still confuse people. Here's the simplest explanation:
+
+A PDA is an address that:
+→ Has no private key (can't sign)
+→ Is derived from seeds you choose
+→ Is controlled by your program
+
+Why this matters:
+→ Deterministic: Same seeds = same address
+→ Trustless escrow: Program controls funds
+→ No key management: Users don't need new keypairs`,
+      notes: 'Foundational concept. Clear analogy helps.',
+      imageUrl: null,
+    },
+  ],
+  23: [
+    {
+      id: 'day23-engagement',
+      title: 'Celebrate Indie Devs',
+      type: 'Engagement',
+      bestTime: '4pm EST',
+      content: `[Quote tweet a developer sharing their launch]
+
+Celebrate with genuine technical appreciation.`,
+      notes: 'Find indie devs, not just funded projects.',
+      imageUrl: null,
+    },
+    {
+      id: 'day23-spotlight',
+      title: 'Helius DAS API',
+      type: 'Spotlight',
+      bestTime: '2pm EST',
+      content: `Querying compressed NFTs used to be painful.
+
+Helius DAS API makes it trivial.
 
 One API call to get:
--> All token transfers for any wallet
--> Regular + compressed assets
--> Full transaction context
+→ All NFTs in a wallet (regular + compressed)
+→ Collection metadata
+→ Ownership history
+→ Asset proofs for transfers
 
-Before: Custom indexers, multiple calls
-After: Single endpoint, milliseconds
+Before DAS: Custom indexer, days of setup
+With DAS: One API call, milliseconds`,
+      notes: 'Practical tool spotlight. Tag Helius. Show real code.',
+      imageUrl: null,
+    },
+  ],
+  24: [
+    {
+      id: 'day24-thread',
+      title: 'Solana Mobile Stack',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `Mobile is crypto's biggest unsolved problem.
 
-Dev workflows just got way simpler.
+The Solana Mobile Stack (SMS) is the answer.
 
-RPC improvements that actually matter.`,
-    notes:
-      "New Helius API from report. Tag @heaboratedlabs. Practical dev tool.",
-    image: null,
-  },
-  spotlight7: {
-    title: "Spotlight: Intodot Leveraged Markets",
-    type: "Platform Spotlight",
-    time: "Best time: 2pm EST",
-    content: `Intodot just raised $20M for leveraged prediction markets.
+1/ Mobile Wallet Adapter: Deep linking to ANY Solana wallet
 
-What they're building:
--> Leveraged positions on events
--> Composable with DeFi
--> On-chain settlement
+2/ Seed Vault: Secure key storage using phone's hardware security
 
-Prediction markets + leverage = spicy.
+3/ dApp Store: Permissionless app distribution
 
-The prediction markets expansion continues.
+4/ What you can build:
+→ Mobile games with real ownership
+→ Tap-to-pay with Solana Pay
+→ Social apps with wallet login
 
-Degen responsibly.`,
-    notes:
-      "Intodot $20M raise from report. Tag @intodot. Prediction markets angle.",
-    image: null,
-  },
-  spotlight8: {
-    title: "Spotlight: Fireblocks Treasury",
-    type: "Partnership Spotlight",
-    time: "Best time: 2pm EST",
-    content: `Institutional treasury management just landed on Solana.
+The Saga Chapter 2 sold 140K+ units.`,
+      notes: 'Mobile is underexplored. Link to SMS docs.',
+      imageUrl: null,
+    },
+  ],
+  25: [
+    {
+      id: 'day25-meme',
+      title: 'Narrative Timeline',
+      type: 'Meme',
+      bestTime: '4pm EST',
+      content: `2022: "Solana is dead"
+2023: "Solana can't scale"
+2024: "Solana is centralized"
+2025: "Solana is the most active chain by every metric"
 
-Fireblocks partnership enables:
--> Enterprise-grade custody
--> Treasury diversification on-chain
--> Compliance-first infrastructure
+The narrative always changes. The builders never stopped.`,
+      notes: 'Focus on builder persistence. Celebrate the community.',
+      imageUrl: null,
+    },
+    {
+      id: 'day25-thread',
+      title: 'Transfer Hooks Deep Dive',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `Transfer Hooks are the most powerful Token Extension.
 
-This is what "institutional adoption" actually looks like:
-- Not just holding SOL
-- Actually using the chain
-- Building treasury operations on it
+Run custom logic on EVERY transfer.
 
-The grown-ups are here. Build accordingly.`,
-    notes:
-      "Fireblocks partnership from report. Institutional angle. Tag @fireblocks.",
-    image: null,
-  },
+Use cases:
+→ Royalty enforcement (can't bypass anymore)
+→ KYC/AML compliance
+→ Gaming (trigger effects on item trades)
+→ Taxes (auto-deduct fees to treasury)
+→ Vesting (release schedule enforcement)`,
+      notes: 'Token Extensions content performs well. High bookmark potential.',
+      imageUrl: null,
+    },
+  ],
+  26: [
+    {
+      id: 'day26-tip',
+      title: 'Account Lookup Tables',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `"Transaction too large" error?
 
-  // Memes (meme1-5 used by calendar)
-  meme1: {
-    title: "1M TPS Loading...",
-    type: "Data Meme",
-    time: "Best time: 11am EST",
-    content: `Network upgrade timeline:
+Account Lookup Tables (ALTs) are your fix.
 
-2024: 400ms finality
-2025: Firedancer live
-2026: Alpenglow (150ms)
-2027: 1M TPS predicted
+Problem: Solana transactions have a 1232-byte limit.
+Solution: ALTs compress account references from 32 bytes → 1 byte.`,
+      notes: 'Common pain point. Practical solution.',
+      imageUrl: null,
+    },
+    {
+      id: 'day26-spotlight',
+      title: 'Jupiter DCA',
+      type: 'Spotlight',
+      bestTime: '2pm EST',
+      content: `Jupiter's DCA is the best dollar-cost averaging in DeFi.
 
-Meanwhile Ethereum:
-"We'll scale... eventually... maybe... layer 2s?"
+1/ The problem: Manual DCA requires setting alarms, executing transactions
 
-[Progress bar meme at 65%]
+2/ Jupiter's solution:
+→ Set once, runs automatically
+→ Sub-cent execution costs
+→ Best prices via aggregation
 
-The roadmap is shipping.`,
-    notes:
-      "Reference network upgrades from report. Clean timeline graphic. Not too aggressive.",
-    image: null,
-  },
-  meme2: {
-    title: "Home Node Energy",
-    type: "Fun Content",
-    time: "Best time: 11am EST",
-    content: `Alpenglow brings 80% reduced validator costs.
+For developers: Study how they designed keeper incentives.`,
+      notes: 'Tag Jupiter. Emphasize the UX innovation.',
+      imageUrl: null,
+    },
+  ],
+  27: [
+    {
+      id: 'day27-engagement',
+      title: 'Reply Day',
+      type: 'Engagement',
+      bestTime: 'All Day',
+      content: `Dedicated reply day.
 
-You can now run a Solana validator on consumer hardware.
+Search for:
+→ Devs asking Solana questions
+→ New project announcements
+→ Migration considerations
 
-[Image: Gaming PC with validator dashboard]
+Goal: 20+ helpful replies with real technical value.`,
+      notes: 'Build reputation as genuinely helpful.',
+      imageUrl: null,
+    },
+    {
+      id: 'day27-thread',
+      title: 'Security Footguns',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `Solana programs have unique security footguns.
 
-"It's not much but it's honest work" energy.
+Top 5 vulnerabilities and how to avoid them:
 
-Ready to run a home node?`,
-    notes:
-      "Consumer hardware support from report. Relatable meme format. Include poll.",
-    image: null,
-  },
-  meme3: {
-    title: "$1 Trillion Stablecoin Loading",
-    type: "Data Meme",
-    time: "Best time: 4pm EST",
-    content: `Stablecoin market predictions:
+1/ Missing signer checks
+2/ Owner validation
+3/ Account confusion
+4/ Integer overflow
+5/ Re-initialization attacks
 
-2024: $200B
-2025: $400B
-2026: $700B predicted
-2027: $1T+
+Security isn't optional. Get audited before mainnet.`,
+      notes: 'High-value educational content. Reference Sec3 or OtterSec.',
+      imageUrl: null,
+    },
+  ],
+  28: [
+    {
+      id: 'day28-spotlight',
+      title: 'Weekly Builder Roundup',
+      type: 'Spotlight',
+      bestTime: '11am EST',
+      content: `What Solana devs shipped this week
 
-Solana's positioning:
-- Gasless tx (pay in USDC)
-- Sub-second finality
-- PYUSD > on Solana than ETH
+🏆 @[project1] launched [feature]
+🛠️ @[project2] hit [milestone]
+🚀 @[project3] went live on mainnet
+🎯 @[project4] announced [partnership]
+📚 @[dev] dropped [content]
 
-[Growth chart meme]
+Missed someone? Drop them below`,
+      notes: 'Third week of the recurring series. Community expects it now.',
+      imageUrl: null,
+    },
+  ],
+  29: [
+    {
+      id: 'day29-tip',
+      title: 'Versioned Transactions',
+      type: 'Quick Tip',
+      bestTime: '12pm EST',
+      content: `Still using legacy transactions? Time to upgrade.
 
-The rails are ready. The money is coming.`,
-    notes: "$1T stablecoin prediction from report. Clean visual. Optimistic tone.",
-    image: null,
-  },
-  meme4: {
-    title: "Memecoin Era RIP",
-    type: "Data Meme",
-    time: "Best time: 4pm EST",
-    content: `2024: "Solana is just memecoins"
-2025: Firedancer live, Alpenglow shipping
-2026: 200+ RWAs, AI agents, prediction markets
+Versioned Transactions unlock:
+→ Address Lookup Tables
+→ More accounts per tx
+→ Future protocol features`,
+      notes: 'Practical migration tip. Many codebases still use legacy.',
+      imageUrl: null,
+    },
+    {
+      id: 'day29-thread',
+      title: 'Stablecoin Growth',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `$16B+ stablecoins live on Solana.
+194% year-over-year growth.
 
-[Meme: Goodbye friend template]
+The numbers:
+→ USDC: $5.5B+
+→ USDT: $2.3B+
+→ PYUSD: 680% growth
 
-The memecoin narrative was fun.
-The infrastructure narrative is permanent.
+PayPal processes more PYUSD on Solana than Ethereum.
 
-Builders stayed. The narrative caught up.`,
-    notes:
-      "Report mentions shift beyond memecoin hype. Celebrate maturity. Not dismissive.",
-    image: null,
-  },
-  meme5: {
-    title: "Finality Speed Check",
-    type: "Data Meme",
-    time: "Best time: 4pm EST",
-    content: `Transaction finality speed:
+That's not speculation. That's TradFi voting with their feet.`,
+      notes: 'Data from DeFiLlama/Chainstack. PayPal angle is strong.',
+      imageUrl: null,
+    },
+  ],
+  30: [
+    {
+      id: 'day30-engagement',
+      title: 'End of Month AMA',
+      type: 'Engagement',
+      bestTime: '3pm EST',
+      content: `End of month AMA
 
-Bitcoin: 60 minutes
-Ethereum: 12 minutes
-Solana (current): 12 seconds
-Solana (Alpenglow): 150ms
+Ask us anything about:
+→ Building on Solana
+→ Upcoming features
+→ Developer resources
+→ Career in web3
 
-[Meme: "I am speed" with Alpenglow logo]
+No question too basic. We're here to help.`,
+      notes: 'High engagement potential. Requires 2+ hours of active responses.',
+      imageUrl: null,
+    },
+    {
+      id: 'day30-thread',
+      title: 'Month Recap',
+      type: 'Thread',
+      bestTime: '10am EST',
+      content: `30 days of @solana_devs content. Here's what we covered:
 
-When your tx confirms before your finger leaves the screen.
+THREADS:
+→ Firedancer deep dive
+→ AI agents on Solana
+→ Token Extensions
+→ State compression economics
+→ DePIN infrastructure
+→ Mobile Stack
+→ Security best practices
 
-The UX gap is closing.`,
-    notes: "Alpenglow finality improvement. Clean comparison. Forward-looking.",
-    image: null,
-  },
+QUICK TIPS:
+→ Retry logic
+→ Priority fees
+→ PDAs explained
+→ Account Lookup Tables
+→ Versioned transactions
+
+SPOTLIGHTS:
+→ Pinocchio, Helius, Jupiter
+→ Hackathon winners
+→ Weekly builder roundups
+
+What topics do you want next month?`,
+      notes: 'Meta-content performs well. Invites feedback for next month.',
+      imageUrl: null,
+    },
+  ],
 };
+
+// Helper to get all events for a specific day
+export function getEventsForDay(day: number): CalendarEvent[] {
+  return calendarEvents[day] || [];
+}
+
+// Get all unique event types
+export const eventTypes = ['Thread', 'Quick Tip', 'Meme', 'Spotlight', 'Engagement'] as const;
 
 export default calendarEvents;

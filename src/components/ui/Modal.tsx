@@ -69,10 +69,10 @@ export function Modal({ isOpen, onClose, event }: ModalProps) {
             </div>
           </div>
 
-          {event.image && (
+          {event.imageUrl && (
             <div className={styles.imagePreview}>
               <span className={styles.imageIcon}>🖼️</span>
-              <span>Image/Video: {event.image}</span>
+              <span>Image/Video: {event.imageUrl}</span>
             </div>
           )}
 
@@ -81,10 +81,10 @@ export function Modal({ isOpen, onClose, event }: ModalProps) {
               <span className={styles.metaLabel}>Type:</span>
               <span className={styles.metaValue}>{event.type}</span>
             </div>
-            {event.time && (
+            {event.bestTime && (
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Best Time:</span>
-                <span className={styles.metaValue}>{event.time}</span>
+                <span className={styles.metaValue}>{event.bestTime}</span>
               </div>
             )}
           </div>

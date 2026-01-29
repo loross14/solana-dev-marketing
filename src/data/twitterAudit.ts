@@ -103,7 +103,7 @@ export const competitorAccounts: CompetitorAccount[] = [
 
 export const patterns: PatternCard[] = [
   {
-    icon: "film",
+    icon: "🎬",
     title: "Viral Demos",
     description:
       "Create product demos with virality potential. Make something fun and clever to drive engagement to the whole ecosystem.",
@@ -111,7 +111,7 @@ export const patterns: PatternCard[] = [
     indicatorType: "bookmarks",
   },
   {
-    icon: "star",
+    icon: "⭐",
     title: "Developer Spotlight",
     description:
       "Highlighting interesting projects or developers building on Solana with genuine enthusiasm",
@@ -119,7 +119,7 @@ export const patterns: PatternCard[] = [
     indicatorType: "replies",
   },
   {
-    icon: "laugh",
+    icon: "😂",
     title: "Technical Memes",
     description:
       "Combining humor with genuine technical insight. The meme draws attention, the insight provides value.",
@@ -127,7 +127,7 @@ export const patterns: PatternCard[] = [
     indicatorType: "viral",
   },
   {
-    icon: "handshake",
+    icon: "🤝",
     title: "Collabs & Culture",
     description:
       '"If you know, you know" - inside jokes that deepen personal attachment to the account',

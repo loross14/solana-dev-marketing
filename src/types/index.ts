@@ -33,11 +33,11 @@ export type EventType =
 export interface CalendarEvent {
   id: string;
   title: string;
-  type: string;
-  time?: string;
+  type: 'Thread' | 'Quick Tip' | 'Meme' | 'Spotlight' | 'Engagement';
+  bestTime: string;
   content: string;
   notes: string;
-  image?: string | null;
+  imageUrl: string | null;
 }
 
 /** Event reference displayed within a calendar day cell */

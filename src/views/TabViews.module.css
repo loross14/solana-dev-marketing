@@ -26,6 +26,14 @@
     margin: var(--space-4) 0;
 }
 
+/* Content pillars grid (6 items, 1 row) */
+.pillarGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-2);
+    margin: var(--space-4) 0;
+}
+
 /* AI Campaign positioning box */
 .positioningBox {
     background: linear-gradient(135deg, rgba(153, 69, 255, 0.08) 0%, rgba(20, 241, 149, 0.05) 100%);
@@ -69,8 +77,26 @@
     margin-bottom: var(--space-4);
 }
 
+@media (max-width: 900px) {
+    .pillarGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .patternGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .pillarGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .pillarGrid {
         grid-template-columns: 1fr;
     }
 }

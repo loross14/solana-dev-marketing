@@ -5,3 +5,4 @@ export * from './tweetExamples';
 export * from './successMetrics';
 export * from './collaborationTargets';
 export * from './aiCampaignData';
+export * from './contentPillars';
