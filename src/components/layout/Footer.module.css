@@ -2,21 +2,6 @@
 .footer {
     margin-top: var(--space-16);
     padding-top: var(--space-8);
-    border-top: 1px solid var(--border-default);
-    position: relative;
-}
-
-/* Accent line at top */
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(100%, 500px);
-    height: 2px;
-    background: var(--gradient-accent-line);
-    opacity: 0.6;
 }
 
 .content {

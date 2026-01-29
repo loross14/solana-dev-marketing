@@ -8,13 +8,8 @@ import styles from './App.module.css';
 
 // Header configuration
 const headerConfig = {
-  title: 'Developer Marketing Exercise',
+  title: "Logan's Takehome",
   subtitle: 'Solana Foundation',
-  metaBadges: [
-    { icon: '✉️', text: 'loross@umich.edu' },
-    { icon: '👤', text: 'Logan Ross' },
-    { icon: '📅', text: 'January 2026' },
-  ],
 };
 
 // Footer configuration
