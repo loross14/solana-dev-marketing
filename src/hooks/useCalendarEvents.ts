@@ -76,6 +76,51 @@ export function useCalendarEvents() {
     return null;
   }, [events]);
 
+  // Generate TypeScript code for the current events (with edits applied)
+  const exportToCode = useCallback((): string => {
+    const lines: string[] = [
+      `export interface CalendarEvent {`,
+      `  id: string;`,
+      `  title: string;`,
+      `  type: 'Thread' | 'Quick Tip' | 'Meme' | 'Spotlight' | 'Engagement';`,
+      `  bestTime: string;`,
+      `  content: string;`,
+      `  notes: string;`,
+      `  imageUrl: string | null;`,
+      `}`,
+      ``,
+      `// Calendar events - exported from app`,
+      `export const calendarEvents: Record<number, CalendarEvent[]> = {`,
+    ];
+
+    const sortedDays = Object.keys(events).map(Number).sort((a, b) => a - b);
+
+    for (const day of sortedDays) {
+      const dayEvents = events[day];
+      lines.push(`  ${day}: [`);
+
+      for (const event of dayEvents) {
+        lines.push(`    {`);
+        lines.push(`      id: '${event.id}',`);
+        lines.push(`      title: '${event.title.replace(/'/g, "\\'")}',`);
+        lines.push(`      type: '${event.type}',`);
+        lines.push(`      bestTime: '${event.bestTime.replace(/'/g, "\\'")}',`);
+        lines.push(`      content: \`${event.content.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,`);
+        lines.push(`      notes: '${event.notes.replace(/'/g, "\\'")}',`);
+        lines.push(`      imageUrl: ${event.imageUrl ? `'${event.imageUrl}'` : 'null'},`);
+        lines.push(`    },`);
+      }
+
+      lines.push(`  ],`);
+    }
+
+    lines.push(`};`);
+    lines.push(``);
+    lines.push(`export default calendarEvents;`);
+
+    return lines.join('\n');
+  }, [events]);
+
   return {
     events,
     updateEvent,
@@ -83,5 +128,6 @@ export function useCalendarEvents() {
     resetAllEdits,
     getEventById,
     hasEdits: Object.keys(edits).length > 0,
+    exportToCode,
   };
 }

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Header, TabNavigation, Footer } from './components/layout';
 import { Modal } from './components/ui';
 import { ContentStrategyTab, AICampaignTab } from './views';
@@ -37,7 +38,16 @@ const footerConfig = {
 function App() {
   const { activeTab, switchTab } = useActiveTab('q1');
   const { isOpen, event, openModal, closeModal } = useModal();
-  const { events, updateEvent, getEventById } = useCalendarEvents();
+  const { events, updateEvent, getEventById, hasEdits, exportToCode } = useCalendarEvents();
+  const [exportStatus, setExportStatus] = useState<'idle' | 'copied'>('idle');
+
+  // Handler for exporting edits to clipboard
+  const handleExport = async () => {
+    const code = exportToCode();
+    await navigator.clipboard.writeText(code);
+    setExportStatus('copied');
+    setTimeout(() => setExportStatus('idle'), 2000);
+  };
 
   // Handler for calendar event clicks (receives full event object)
   const handleEventClick = (eventData: CalendarEvent) => {
@@ -85,6 +95,13 @@ function App() {
       <Footer {...footerConfig} />
 
       <Modal isOpen={isOpen} onClose={closeModal} event={event} onSave={handleSaveEvent} />
+
+      {/* Export button - appears when there are unsaved edits */}
+      {hasEdits && (
+        <button className={styles.exportButton} onClick={handleExport}>
+          {exportStatus === 'copied' ? 'Copied!' : 'Export Edits'}
+        </button>
+      )}
     </div>
   );
 }

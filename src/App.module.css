@@ -26,3 +26,35 @@
         padding: var(--space-4) var(--space-3);
     }
 }
+
+/* Export button - floating action button */
+.exportButton {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    padding: var(--space-3) var(--space-5);
+    background: linear-gradient(135deg, var(--solana-purple) 0%, #7c3aed 100%);
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 20px -4px rgba(153, 69, 255, 0.5);
+    transition: all var(--duration-fast) var(--ease-out);
+    z-index: 100;
+}
+
+.exportButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px -4px rgba(153, 69, 255, 0.6);
+}
+
+@media (max-width: 480px) {
+    .exportButton {
+        bottom: var(--space-4);
+        right: var(--space-4);
+        padding: var(--space-2) var(--space-4);
+        font-size: var(--text-xs);
+    }
+}
