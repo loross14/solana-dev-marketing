@@ -74,6 +74,12 @@ export function ContentStrategyTab({ onEventClick }: ContentStrategyTabProps) {
 
         <ContentCalendar onEventClick={onEventClick} />
 
+        <div className={styles.sectionDivider}>
+          <div className={styles.dividerLine} />
+          <span className={styles.dividerLabel}>Built on these pillars</span>
+          <div className={styles.dividerLine} />
+        </div>
+
         <h4 className={styles.subheading}>Content Pillars</h4>
         <div className={styles.pillarGrid}>
           {contentPillars.map((pillar) => (

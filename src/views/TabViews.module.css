@@ -34,6 +34,36 @@
     margin: var(--space-4) 0;
 }
 
+/* Section divider with label */
+.sectionDivider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin: var(--space-8) 0 var(--space-2);
+}
+
+.dividerLine {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--solana-purple),
+        var(--solana-green),
+        transparent
+    );
+    opacity: 0.4;
+}
+
+.dividerLabel {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+}
+
 /* AI Campaign positioning box */
 .positioningBox {
     background: linear-gradient(135deg, rgba(153, 69, 255, 0.08) 0%, rgba(20, 241, 149, 0.05) 100%);
