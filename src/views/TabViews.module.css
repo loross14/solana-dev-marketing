@@ -1,0 +1,76 @@
+/* Tab View Styles */
+.tabContent {
+    animation: fadeIn var(--duration-normal) var(--ease-out);
+}
+
+.sectionDesc {
+    color: var(--text-secondary);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+    max-width: 70ch;
+}
+
+.subheading {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--solana-green);
+    margin: var(--space-8) 0 var(--space-4);
+}
+
+/* Pattern/pillar grid */
+.patternGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-4) 0;
+}
+
+/* AI Campaign positioning box */
+.positioningBox {
+    background: linear-gradient(135deg, rgba(153, 69, 255, 0.08) 0%, rgba(20, 241, 149, 0.05) 100%);
+    border: 1px solid rgba(153, 69, 255, 0.2);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    margin: var(--space-6) 0;
+}
+
+.positioningBox h4 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--solana-purple);
+    margin: 0 0 var(--space-3);
+}
+
+.meta {
+    color: var(--text-tertiary);
+    font-size: var(--text-xs);
+}
+
+/* Expandable "more" sections */
+.moreContent {
+    margin-top: var(--space-6);
+}
+
+.moreContent summary {
+    cursor: pointer;
+    color: var(--solana-green);
+    font-weight: 500;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: background var(--duration-fast) var(--ease-out);
+}
+
+.moreContent summary:hover {
+    background: rgba(20, 241, 149, 0.1);
+}
+
+.moreContent[open] summary {
+    margin-bottom: var(--space-4);
+}
+
+@media (max-width: 768px) {
+    .patternGrid {
+        grid-template-columns: 1fr;
+    }
+}

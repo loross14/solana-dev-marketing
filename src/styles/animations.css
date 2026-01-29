@@ -1,0 +1,66 @@
+/* ============================================
+ * ANIMATIONS - Keyframe Definitions
+ * v3.5: Enhanced Keyframe Animations
+ * ============================================ */
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes subtleGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* v3.5: Breathing glow - organic, alive feel */
+@keyframes breathe {
+    0%, 100% {
+        opacity: 0.5;
+        filter: blur(12px);
+    }
+    50% {
+        opacity: 0.8;
+        filter: blur(18px);
+    }
+}
+
+/* v3.5: Gentle float for cards */
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* v3.5: Icon pulse on interaction */
+@keyframes iconPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1.05); }
+}
+
+/* v3.5: Shine sweep for premium feel */
+@keyframes shineSweep {
+    0% { left: -100%; opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { left: 100%; opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; r: 12; }
+    50% { opacity: 0.1; r: 20; }
+}
+
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}

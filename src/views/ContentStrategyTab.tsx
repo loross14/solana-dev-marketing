@@ -1,0 +1,146 @@
+import { CollapsibleSection, ContentCalendar } from '../components/sections';
+import { Table, TweetBox, PillarCard } from '../components/ui';
+import {
+  competitorAccounts,
+  patterns,
+  tweetExamples,
+  successMetrics,
+  collaborationTargets,
+} from '../data';
+import styles from './TabViews.module.css';
+
+interface ContentStrategyTabProps {
+  onEventClick: (eventId: string) => void;
+}
+
+export function ContentStrategyTab({ onEventClick }: ContentStrategyTabProps) {
+  return (
+    <div className={styles.tabContent}>
+      {/* Twitter Audit Section */}
+      <CollapsibleSection
+        id="section-audit"
+        icon="🔍"
+        iconVariant="default"
+        title="Crypto Dev Twitter Audit"
+        subtitle="Who's winning and why"
+      >
+        <p className={styles.sectionDesc}>
+          Analysis of successful developer-focused accounts to inform our content strategy.
+        </p>
+
+        <Table
+          columns={[
+            { key: 'account', header: 'Account', render: (_, row) => (
+              <><strong>{row.account}</strong><br /><span className={styles.meta}>{row.handle}</span></>
+            )},
+            { key: 'followers', header: 'Followers' },
+            { key: 'engagementRate', header: 'Eng. Rate' },
+            { key: 'topFormat', header: 'Top Format' },
+            { key: 'stealThis', header: 'Steal This' },
+          ]}
+          data={competitorAccounts}
+          ariaLabel="Competitor account analysis"
+          highlightFirst
+        />
+
+        <h4 className={styles.subheading}>Patterns That Work</h4>
+        <div className={styles.patternGrid}>
+          {patterns.map((pattern, i) => (
+            <PillarCard
+              key={i}
+              icon={pattern.icon}
+              title={pattern.title}
+              description={pattern.description}
+              indicator={pattern.indicator}
+              indicatorType={pattern.indicatorType}
+            />
+          ))}
+        </div>
+      </CollapsibleSection>
+
+      {/* Content Calendar Section */}
+      <CollapsibleSection
+        id="section-calendar"
+        icon="📅"
+        iconVariant="metrics"
+        title="30-Day Content Calendar"
+        subtitle="Click any event for full content details"
+      >
+        <p className={styles.sectionDesc}>
+          A strategic content calendar balancing viral demos, educational tips, memes, developer spotlights, and collaborations.
+        </p>
+        <ContentCalendar onEventClick={onEventClick} />
+      </CollapsibleSection>
+
+      {/* Example Tweets Section */}
+      <CollapsibleSection
+        id="section-tweets"
+        icon="✍️"
+        iconVariant="content"
+        title="Example Tweets (10 Samples)"
+        subtitle="Ready-to-post content across all formats"
+      >
+        {tweetExamples.slice(0, 5).map((tweet) => (
+          <TweetBox
+            key={tweet.id}
+            category={tweet.category}
+            content={tweet.content}
+            rationale={tweet.rationale}
+          />
+        ))}
+        <details className={styles.moreContent}>
+          <summary>Show 5 more examples</summary>
+          {tweetExamples.slice(5).map((tweet) => (
+            <TweetBox
+              key={tweet.id}
+              category={tweet.category}
+              content={tweet.content}
+              rationale={tweet.rationale}
+            />
+          ))}
+        </details>
+      </CollapsibleSection>
+
+      {/* Success Metrics Section */}
+      <CollapsibleSection
+        id="section-metrics"
+        icon="📊"
+        iconVariant="metrics"
+        title="Success Metrics"
+        subtitle="What we're measuring and why"
+      >
+        <Table
+          columns={[
+            { key: 'metric', header: 'Metric', render: (v) => <strong>{String(v)}</strong> },
+            { key: 'currentBaseline', header: 'Current Baseline' },
+            { key: 'thirtyDayTarget', header: '30-Day Target' },
+            { key: 'howToTrack', header: 'How to Track' },
+          ]}
+          data={successMetrics}
+          ariaLabel="Success metrics"
+        />
+      </CollapsibleSection>
+
+      {/* Collaboration Targets Section */}
+      <CollapsibleSection
+        id="section-collab"
+        icon="🎁"
+        iconVariant="bonus"
+        title="Bonus: Collaboration Targets"
+        subtitle="Strategic partnership opportunities"
+      >
+        <Table
+          columns={[
+            { key: 'name', header: 'Developer', render: (_, row) => (
+              <><strong>{row.name}</strong><br /><span className={styles.meta}>{row.handle} • {row.followers}</span></>
+            )},
+            { key: 'whyTheyMatter', header: 'Why They Matter' },
+            { key: 'collaborationIdea', header: 'Collaboration Idea' },
+          ]}
+          data={collaborationTargets}
+          ariaLabel="Collaboration targets"
+        />
+      </CollapsibleSection>
+    </div>
+  );
+}
