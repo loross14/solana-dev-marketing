@@ -5,6 +5,34 @@ import { usePasskey } from '../../hooks';
 import styles from './Modal.module.css';
 
 const EDIT_PASSWORD = 'solana2026';
+const SESSION_KEY = 'solana-calendar-session';
+const SESSION_DURATION_MS = 60 * 60 * 1000; // 1 hour
+
+// Session helpers
+function getSession(): number | null {
+  const stored = sessionStorage.getItem(SESSION_KEY);
+  if (!stored) return null;
+  const timestamp = parseInt(stored, 10);
+  if (isNaN(timestamp)) return null;
+  // Check if session is still valid
+  if (Date.now() - timestamp > SESSION_DURATION_MS) {
+    sessionStorage.removeItem(SESSION_KEY);
+    return null;
+  }
+  return timestamp;
+}
+
+function createSession(): void {
+  sessionStorage.setItem(SESSION_KEY, Date.now().toString());
+}
+
+function getSessionTimeRemaining(): string | null {
+  const timestamp = getSession();
+  if (!timestamp) return null;
+  const remaining = SESSION_DURATION_MS - (Date.now() - timestamp);
+  const minutes = Math.ceil(remaining / 60000);
+  return `${minutes}m`;
+}
 
 type AuthState =
   | 'idle'           // Not attempting auth
@@ -88,6 +116,14 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
 
   const handleEditClick = () => {
     setAuthError(null);
+
+    // Check for valid session first
+    if (getSession()) {
+      setAuthState('authenticated');
+      setIsEditing(true);
+      return;
+    }
+
     if (hasPasskey) {
       // If passkey exists, try TouchID first
       setAuthState('touchid');
@@ -100,6 +136,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
   const handleTouchIdAuth = async () => {
     const success = await authenticate();
     if (success) {
+      createSession();
       setAuthState('authenticated');
       setIsEditing(true);
     } else {
@@ -111,6 +148,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
   const handleTouchIdSetup = async () => {
     const success = await registerPasskey();
     if (success) {
+      createSession();
       setAuthState('authenticated');
       setIsEditing(true);
     } else {
@@ -127,7 +165,8 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
         setAuthState('setup-touchid');
         setPassword('');
       } else {
-        // Direct password auth
+        // Direct password auth - create session
+        createSession();
         setAuthState('authenticated');
         setIsEditing(true);
         setPassword('');
@@ -202,13 +241,20 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
           )}
           <div className={styles.headerActions}>
             {!isEditing && authState === 'idle' && onSave && (
-              <button
-                className={styles.editButton}
-                onClick={handleEditClick}
-                aria-label="Edit event"
-              >
-                Edit
-              </button>
+              <>
+                {getSession() && (
+                  <span className={styles.sessionIndicator} title="Session active">
+                    {getSessionTimeRemaining()} left
+                  </span>
+                )}
+                <button
+                  className={styles.editButton}
+                  onClick={handleEditClick}
+                  aria-label="Edit event"
+                >
+                  Edit
+                </button>
+              </>
             )}
             <button
               className={styles.close}
