@@ -80,7 +80,6 @@ export function ContentStrategyTab({ onEventClick }: ContentStrategyTabProps) {
           <div className={styles.dividerLine} />
         </div>
 
-        <h4 className={styles.subheading}>Content Pillars</h4>
         <div className={styles.pillarGrid}>
           {contentPillars.map((pillar) => (
             <PillarCard
