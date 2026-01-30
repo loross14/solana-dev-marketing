@@ -2,44 +2,51 @@ import type { CollaborationTarget, BonusCollaborationIdea } from '../types';
 
 export const collaborationTargets: CollaborationTarget[] = [
   {
-    name: 'Nader Dabit',
-    handle: '@dabit3',
-    followers: '184K',
-    whyTheyMatter: "The Web2→Web3 bridge. His tutorials brought thousands of React devs to crypto. Currently exploring multiple chains — Solana needs to be featured prominently.",
-    collaborationIdea: '"Solana for React Devs" video series — 3-part tutorial on building full-stack Solana apps with Next.js. He writes the scripts, we provide technical review + promotion. His audience = our target audience.'
+    name: 'Anatoly Yakovenko',
+    handle: '@aeyakovenko',
+    followers: '1.2M+',
+    whyTheyMatter: "Solana co-founder and CEO of Solana Labs. The ultimate insider voice for protocol upgrades like Alpenglow and Firedancer. His endorsement carries maximum credibility in the ecosystem.",
+    collaborationIdea: "Co-branded threads on dev tools like Anchor and protocol upgrades. Position Solana as the AI-friendly chain for real-time agents through authentic, high-engagement content directly from the source."
   },
   {
-    name: 'Armani Ferrante',
-    handle: '@armaniferrante',
-    followers: '157K',
-    whyTheyMatter: 'Created Anchor (the framework most Solana devs use). Ultimate technical credibility. Less active on Twitter but massive influence when he posts.',
-    collaborationIdea: '"Anchor Masterclass" thread series — Co-authored deep-dives on advanced Anchor patterns. He provides the technical insights, we handle distribution. Positions @solana_devs as the authoritative technical voice.'
+    name: 'Lex Fridman',
+    handle: '@lexfridman',
+    followers: '4.2M+',
+    whyTheyMatter: "MIT researcher and podcast host interviewing AI/crypto leaders. His tech-savvy audience is perfect for developer onboarding and long-form educational content.",
+    collaborationIdea: "Sponsored podcast episode on Solana AI agents (e.g., with SendAI). Reach his massive audience to boost hackathon submissions and attract high-quality developers to the ecosystem."
   },
   {
-    name: 'Chase Barker',
-    handle: '@therealchaseeb',
-    followers: '~10K',
-    whyTheyMatter: 'Core Solana developer, known for accessible explanations of complex protocol changes. Already Solana-native but underleveraged for @solana_devs collabs.',
-    collaborationIdea: '"Ask Chase Anything" monthly AMA — Hosted on @solana_devs, he answers community questions live. Drives engagement, shows accessibility, creates evergreen content from Q&A.'
+    name: 'Andrew Ng',
+    handle: '@AndrewYNg',
+    followers: '1.5M+',
+    whyTheyMatter: "DeepLearning.AI founder and AI educator. His emphasis on accessible ML education makes him ideal for bridging Web2 AI devs to Web3. Massive credibility in the AI community.",
+    collaborationIdea: "Partner for tutorials on building AI agents with Solana's Agent Kit. Leverage his courses to attract Web2 devs and highlight Solana's cost/speed advantages over competitors."
   },
   {
-    name: 'Metaplex',
-    handle: '@metaplex',
-    followers: '~180K',
-    whyTheyMatter: 'Built Metaplex (NFT standard on Solana). Deep ecosystem knowledge, respected technical voice. Understands both developer and creator perspectives.',
-    collaborationIdea: '"State of Solana NFTs" quarterly report — Co-branded analysis of NFT/digital asset trends. Metaplex team provides insights, we create shareable graphics. Positions Solana as the serious NFT infrastructure play.'
+    name: 'Nikita Bier',
+    handle: '@nikitabier',
+    followers: '200K+',
+    whyTheyMatter: "X product lead and Solana advisor. Platform-level influence with deep insights into traffic optimization and viral content mechanics. Already Solana-aligned.",
+    collaborationIdea: "Sponsor X Spaces on Solana dev tools. Leverage his traffic insights to optimize content distribution and tie into viral AI/crypto trends for broader reach beyond the echo chamber."
+  },
+  {
+    name: 'Tam Gros',
+    handle: '@tamgros',
+    followers: '80K+',
+    whyTheyMatter: "Solana Foundation VP of Tech. Internal-yet-external voice providing credible, non-salesy value to developers. Deep knowledge of protocol upgrades and ecosystem pain points.",
+    collaborationIdea: "Co-host AMAs on upgrades like Alpenglow. Address developer pain points like congestion with technical deep-dives for retention-focused marketing."
   }
 ];
 
 export const bonusCollaborationIdeas: BonusCollaborationIdea[] = [
   {
     target: 'Fireship (YouTube)',
-    idea: '"Solana in 100 Seconds" — his format reaches millions of devs. Sponsor a video explaining Solana\'s architecture in his signature style.',
+    idea: "\"Solana in 100 Seconds\" — his format reaches millions of devs. Sponsor a video explaining Solana's architecture in his signature style.",
     type: 'influencer'
   },
   {
     target: 'Guinness World Records',
-    idea: '"World\'s Fastest Blockchain Transaction" — live attempt at Breakpoint London (Nov 2026). Global press coverage, viral moment. Legacy media crossover.',
+    idea: "\"World's Fastest Blockchain Transaction\" — live attempt at Breakpoint London (Nov 2026). Global press coverage, viral moment. Legacy media crossover.",
     type: 'event'
   }
 ];
