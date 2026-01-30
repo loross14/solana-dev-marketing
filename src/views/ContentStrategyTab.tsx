@@ -68,9 +68,7 @@ export function ContentStrategyTab({ events, onEventClick }: ContentStrategyTabP
         title="30-Day Content Calendar"
         subtitle="Click on any item to see a content sample."
       >
-        <p className={styles.sectionDesc}>
-          This content strategy is centered around quickly revitalize the engagement and increase the surface area.
-        </p>
+
 
         <ContentCalendar events={events} onEventClick={onEventClick} />
 

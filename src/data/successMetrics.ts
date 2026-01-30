@@ -32,9 +32,9 @@ export const successMetrics: SuccessMetric[] = [
     howToTrack: 'Manual tracking + Twitter notifications'
   },
   {
-    metric: 'Our Wins',
+    metric: 'Strategy effectiveness',
     currentBaseline: '0 (establishing baseline)',
-    thirtyDayTarget: 'Learn "what works" and "what converts"',
+    thirtyDayTarget: 'Hone in on our most effective strategies',
     howToTrack: 'X Analytics + Signals'
   }
 ];
