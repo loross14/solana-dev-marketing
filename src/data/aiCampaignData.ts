@@ -44,7 +44,7 @@ export const competitionWeeks: CompetitionWeek[] = [
     track: 'AI Hackathon',
     theme: 'Leaderboard',
     prize: 'Prize Package',
-    contentFocus: 'Bounties from top companies in Blockchain and AI. Coordinated announcements of tier 1 integrations to '
+    contentFocus: 'Bounties from top companies in Blockchain and AI. Coordinated announcement of integration with top AI company. '
   },
   {
     track: 'AI Trading Contests',
@@ -88,32 +88,32 @@ export const competitionRules: CompetitionCategory[] = [
 export const sponsors: Sponsor[] = [
   {
     name: 'Jupiter',
-    whyTheyCare: 'Leading DEX aggregator. Every bot uses their routing. Showcase volume.',
+    whyTheyCare: 'Leading DEX aggregator. Every bot uses their routing. Showcase volume',
     askAmount: 'Prize pool contribution + API credits for competitors'
   },
   {
     name: 'Helius',
-    whyTheyCare: 'RPC provider. Bots need reliable infrastructure. Demo their speed.',
+    whyTheyCare: 'RPC provider. Bots need reliable infrastructure. Demo their speed',
     askAmount: 'Free RPC access for competitors + prize category'
   },
   {
     name: 'Drift Protocol',
-    whyTheyCare: 'Perps DEX. Could expand competition to derivatives category.',
+    whyTheyCare: 'Perps DEX. Could expand competition to derivatives category',
     askAmount: 'Sponsored "Best Drift Integration" prize'
   },
   {
     name: 'Marinade Finance',
-    whyTheyCare: 'Liquid staking. Bots could integrate mSOL strategies.',
+    whyTheyCare: 'Liquid staking. Bots could integrate mSOL strategies',
     askAmount: 'Yield-bearing category sponsorship'
   },
   {
     name: 'SendAI (Agent Kit)',
-    whyTheyCare: 'Their toolkit powers the competition. Massive showcase opportunity.',
+    whyTheyCare: 'Their toolkit powers the competition. Massive showcase opportunity',
     askAmount: '"Most Innovative Use of Agent Kit" prize'
   },
   {
     name: 'Jump Crypto',
-    whyTheyCare: 'Already Solana-native (Firedancer). Deep DeFi expertise.',
+    whyTheyCare: 'Already Solana-native (Firedancer). Deep DeFi expertise',
     askAmount: 'Prize pool contribution + technical mentorship'
   }
 ];
