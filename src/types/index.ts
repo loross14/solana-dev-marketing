@@ -154,7 +154,7 @@ export interface TechnicalSpec {
 
 /** Competition week structure */
 export interface CompetitionWeek {
-  week: string;
+  track: string;
   theme: string;
   prize: string;
   contentFocus: string;

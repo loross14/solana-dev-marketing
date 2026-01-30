@@ -1,9 +1,7 @@
 import { CollapsibleSection } from '../components/sections';
-import { Table, PillarCard } from '../components/ui';
+import { Table } from '../components/ui';
 import {
-  technicalSpecs,
   competitionWeeks,
-  competitionRules,
   sponsors,
   strategicPartners,
   aiProjects,
