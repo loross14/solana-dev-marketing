@@ -21,15 +21,14 @@ export function AICampaignTab() {
         id="section-q3-content"
         icon="🏆"
         iconVariant="content"
-        title="The Campaign: Solana AI Trading Competition"
-        subtitle="4-week competition — whose bot generates the highest returns?"
+        title="Campaign Concept"
+        subtitle="The Agentic Olympics"
       >
         <p className={styles.sectionDesc}>
-          AI trading bots are the killer app for Solana + AI. They showcase speed (400ms finality matters for arbitrage),
-          low fees (thousands of micro-trades), and the Solana Agent Kit in production.
+          A multi-week competition designed to accelerate AI adoption on Solana by targetic strategic frontiers of innovation.
         </p>
 
-        <h4 className={styles.subheading}>Competition Structure</h4>
+        <h4 className={styles.subheading}>Sample Event: Trading Competition</h4>
         <Table
           columns={[
             { key: 'week', header: 'Week', render: (v) => <strong>{String(v)}</strong> },
@@ -40,7 +39,7 @@ export function AICampaignTab() {
           ariaLabel="Competition timeline"
         />
 
-        <h4 className={styles.subheading}>Rules</h4>
+        <h4 className={styles.subheading}>Sample Rules: Trading Competition</h4>
         <div className={styles.patternGrid}>
           {competitionRules.map((rule, i) => (
             <PillarCard
@@ -52,7 +51,7 @@ export function AICampaignTab() {
           ))}
         </div>
 
-        <h4 className={styles.subheading}>Potential Sponsors</h4>
+        <h4 className={styles.subheading}>Partnership Targets</h4>
         <Table
           columns={[
             { key: 'name', header: 'Sponsor', render: (v) => <strong>{String(v)}</strong> },
@@ -69,11 +68,11 @@ export function AICampaignTab() {
         id="section-q3-narrative"
         icon="🤖"
         iconVariant="ai"
-        title="Solana's AI Position"
-        subtitle="The settlement layer for the non-human economy"
+        title="Why Solana?"
+        subtitle="'I am honestly a huge fan' -Clawdbot"
       >
         <p className={styles.sectionDesc}>
-          AI agents can't open bank accounts — but they can hold Solana wallets.
+          A few reasons why Solana is positioned to become the backbone of the agentic economy:
         </p>
 
         <Table
@@ -92,9 +91,12 @@ export function AICampaignTab() {
         id="section-q3-channels"
         icon="📡"
         iconVariant="channels"
-        title="Target Channels"
-        subtitle="Where to promote the AI Trading Competition"
+        title="Distribution Channels"
+        subtitle="Maximize impact by targeting multiple strategic niches in parallel."
       >
+        <p className={styles.sectionDesc}>
+          Approach should include everyone from solana traders with claude to researchers with frontier hardware.
+        </p>
         <h4 className={styles.subheading}>Crypto-Native (Already Solana-Aware)</h4>
         <Table
           columns={[
@@ -135,7 +137,7 @@ export function AICampaignTab() {
         icon="🤝"
         iconVariant="default"
         title="Strategic Partnerships"
-        subtitle="Global positioning through high-signal alliances"
+        subtitle="Global positioning through high-signal alliances."
       >
         <Table
           columns={[
@@ -153,15 +155,15 @@ export function AICampaignTab() {
         id="section-q3-bonus"
         icon="🎁"
         iconVariant="bonus"
-        title="Bonus: AI Projects on Solana"
-        subtitle="Ecosystem showcase opportunities"
+        title="Bonus: Ecosystem Showcase"
+        subtitle="Show developers how Solana uplifts it's builders."
       >
         <Table
           columns={[
             { key: 'name', header: 'Project', render: (v) => <strong>{String(v)}</strong> },
             { key: 'category', header: 'Category' },
             { key: 'keyStats', header: 'Key Stats' },
-            { key: 'showcaseAngle', header: 'Showcase Angle' },
+            { key: 'showcaseAngle', header: 'How to Showcase' },
           ]}
           data={aiProjects}
           ariaLabel="AI projects to showcase"

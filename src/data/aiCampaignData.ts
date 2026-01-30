@@ -36,26 +36,26 @@ export const technicalSpecs: AITechnicalSpec[] = [
 export const competitionWeeks: CompetitionWeek[] = [
   {
     week: 'Week 1',
-    theme: 'Launch',
-    prize: 'Weekly Prize Package',
-    contentFocus: 'Launch + starter kit (solana-ai-trader-starter repo, 3-part tutorial, #ai-trading-competition Discord)'
+    theme: 'Kickoff',
+    prize: 'Prize Package',
+    contentFocus: 'Attention, Engagement, Education'
   },
   {
     week: 'Week 2',
     theme: 'Leaderboard',
-    prize: 'Weekly Prize Package',
-    contentFocus: 'First leaderboard, strategy breakdowns'
+    prize: 'Prize Package',
+    contentFocus: 'Public leaderboards, strategic breakdowns'
   },
   {
     week: 'Week 3',
     theme: 'Stories',
-    prize: 'Weekly Prize Package',
+    prize: 'Prize Package',
     contentFocus: "Underdog stories, People's Choice voting"
   },
   {
     week: 'Week 4',
     theme: 'Finals',
-    prize: 'Grand Prize Package',
+    prize: 'Grand Prize',
     contentFocus: 'Finals at Breakpoint London (Nov 2026)'
   }
 ];
@@ -65,22 +65,22 @@ export const competitionRules: CompetitionCategory[] = [
   {
     icon: '📊',
     title: 'Scoring',
-    description: '% return on 10 SOL starting balance. Tiebreaker: Sharpe ratio. All tracking on-chain.'
+    description: 'Onchain ROI from a fixed starting point.'
   },
   {
     icon: '🔧',
     title: 'Requirements',
-    description: 'Must use Solana Agent Kit. AI component required. Code open-sourced post-competition.'
+    description: 'Must use Solana Agent Kit.'
   },
   {
     icon: '🏅',
     title: 'Categories',
-    description: "Overall Returns, Best Risk-Adjusted, Most Innovative, People's Choice."
+    description: "Overall, Risk-Adjusted, Innovation, and People's Choice."
   },
   {
     icon: '⚠️',
     title: 'Safety',
-    description: 'Devnet practice week. Auto-pause at -50%. Spot only, major pairs.'
+    description: 'No crime allowed!'
   }
 ];
 
@@ -240,76 +240,47 @@ export const aiChannels: Channel[] = [
 // Strategic partners
 export const strategicPartners: StrategicPartner[] = [
   {
-    partner: 'NVIDIA',
-    whyItMatters: 'Owns AI hardware narrative. Their blessing = legitimacy with enterprises.',
-    thePlay: 'Joint announcement at GTC. Render/io.net showcase. "Solana: The Settlement Layer for GPU Compute."'
+    partner: 'Claude Code',
+    whyItMatters: 'Model providers are building agent infrastructure. First-mover advantage.',
+    thePlay: 'Official Solana integration built into claude connections menu.'
   },
   {
-    partner: 'OpenAI / Anthropic',
-    whyItMatters: 'Model providers are building agent infrastructure. First-mover advantage.',
-    thePlay: 'Official Solana tools in their agent frameworks. API credits for ecosystem builders.'
+    partner: 'David Sachs',
+    whyItMatters: 'A cosign from the Czar signals Solana is aligned with upcoming policy.',
+    thePlay: 'Ask Sachs to record a short clip celebrating the endeavour. Sponsorship at an all in summit for additional exposure.'
   },
   {
     partner: 'LangChain',
     whyItMatters: 'De facto agent framework. 50K+ Discord, massive mindshare.',
-    thePlay: 'First-class Solana integration in core library. Co-branded "AI Agents on Solana" course.'
+    thePlay: 'Integration in core library, fancy branding to farm attention.'
   },
   {
-    partner: 'Visa / Mastercard',
-    whyItMatters: 'TradFi signal. Stablecoin settlement is their strategic focus.',
-    thePlay: 'Pilot program: AI agent payments via Solana rails. Press release potential.'
+    partner: 'NVIDIA',
+    whyItMatters: 'All the cool kids are doing it. Apparently theyre counting it towards the GDP or something?',
+    thePlay: 'Find any low hanging partnership that the marketing team could leverage.'
   },
-  {
-    partner: 'World Economic Forum',
-    whyItMatters: 'Davos visibility = mainstream legitimacy.',
-    thePlay: 'Panel on "Autonomous Agents and the Future of Finance." Position Solana as infrastructure.'
-  }
 ];
 
 // AI Projects on Solana (ecosystem showcase)
 export const aiProjects: AIProject[] = [
   {
-    name: 'Solana Agent Kit',
-    category: 'AI Agents',
-    keyStats: '60+ protocol integrations, TypeScript + LangChain',
-    showcaseAngle: '"Build an autonomous agent in 30 minutes" tutorial series. The default toolkit.'
-  },
-  {
-    name: 'Render Network',
-    category: 'GPU Compute',
-    keyStats: '$1.74B market cap, migrated from ETH',
-    showcaseAngle: 'Case study: Why they chose Solana. Cost/throughput comparison content.'
-  },
-  {
     name: 'Grass',
     category: 'Data/Training',
     keyStats: '8.5M+ monthly active participants',
-    showcaseAngle: 'Data provenance story. Ethically-sourced AI training narrative.'
+    showcaseAngle: 'Competition category for training/tuning exclusively with data from Grass. '
   },
   {
     name: 'io.net',
     category: 'GPU Compute',
     keyStats: 'Aggregated GPU network, enterprise focus',
-    showcaseAngle: 'Cost comparison vs AWS/GCP. Enterprise AI infrastructure pitch.'
-  },
-  {
-    name: 'Nosana',
-    category: 'AI Inference',
-    keyStats: 'Decentralized inference marketplace',
-    showcaseAngle: 'Tutorial: Deploy your model without managing infrastructure.'
+    showcaseAngle: 'Free Banner Ads for their made-up campaign called, "Anyone need to borrow my extra H2000?"'
   },
   {
     name: 'Virtuals Protocol',
     category: 'AI Agents',
     keyStats: 'AI agents with on-chain identities',
-    showcaseAngle: 'The "AI influencer" story. Revenue-generating agents use case.'
+    showcaseAngle: 'The "AI influencer" revolution. Already generating revenue.'
   },
-  {
-    name: 'ElizaOS',
-    category: 'Multi-Agent',
-    keyStats: 'Agent-to-agent coordination framework',
-    showcaseAngle: 'Advanced tutorial: Multi-agent swarm intelligence on-chain.'
-  }
 ];
 
 // Use cases that work today

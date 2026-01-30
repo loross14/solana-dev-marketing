@@ -5,37 +5,37 @@ export const successMetrics: SuccessMetric[] = [
     metric: 'Followers',
     currentBaseline: '78.2K',
     thirtyDayTarget: '82K (+5%)',
-    howToTrack: 'Twitter Analytics — weekly check'
+    howToTrack: 'X Analytics — weekly check'
   },
   {
     metric: 'Engagement Rate',
     currentBaseline: '1.5–2.5%',
     thirtyDayTarget: '2.5–3%',
-    howToTrack: 'Twitter Analytics — (likes + replies + RTs) / impressions'
+    howToTrack: 'X Analytics — (likes + replies + RTs) / impressions'
   },
   {
     metric: 'Posting Cadence',
     currentBaseline: '5-6/week',
     thirtyDayTarget: '8-10/week',
-    howToTrack: 'Content calendar adherence'
+    howToTrack: 'X Analytics'
   },
   {
-    metric: 'Docs Link Clicks',
+    metric: 'Link Clicks',
     currentBaseline: 'Establish baseline',
-    thirtyDayTarget: '+25% from Week 1',
-    howToTrack: 'UTM parameters on all docs.solana.com links'
+    thirtyDayTarget: '+10-20% from Week 1',
+    howToTrack: 'X Analytics & UTM parameters'
   },
   {
-    metric: 'Reply Rate',
+    metric: 'Replies',
     currentBaseline: 'Establish baseline',
-    thirtyDayTarget: 'Reply to 80% of technical questions within 4 hours',
+    thirtyDayTarget: 'Average between 25-50 useful replies per week',
     howToTrack: 'Manual tracking + Twitter notifications'
   },
   {
-    metric: 'AI Impressions',
+    metric: 'Our Wins',
     currentBaseline: '0 (establishing baseline)',
-    thirtyDayTarget: '50K/month',
-    howToTrack: 'UTM parameters on all AI-tagged posts (utm_campaign=ai_trading_competition)'
+    thirtyDayTarget: 'Learn "what works" and "what converts"',
+    howToTrack: 'X Analytics + Signals'
   }
 ];
 

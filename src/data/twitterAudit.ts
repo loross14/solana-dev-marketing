@@ -30,36 +30,6 @@ export const competitorAccounts: CompetitorAccount[] = [
     isBaseline: true,
   },
   {
-    account: 'Mert | helius.dev',
-    handle: '@0xMert_',
-    followers: '315.9K',
-    engagementRate: '1-3%',
-    topFormat: 'Community polls + hot takes',
-    postCadence: '7-10/week',
-    stealThis:
-      'Helius CEO. Engagement farming with genuine questions. Never sells, always advocates.',
-  },
-  {
-    account: 'Austin Federa',
-    handle: '@austin_federa',
-    followers: '175.6K',
-    engagementRate: '0.5-2%',
-    topFormat: 'Ecosystem threads + data drops',
-    postCadence: '8-10/week',
-    stealThis:
-      'Ex-Solana Foundation Head of Strategy. Now DoubleZero. Data-backed claims.',
-  },
-  {
-    account: 'Nader Dabit',
-    handle: '@dabit3',
-    followers: '184.3K',
-    engagementRate: '0.2-1%',
-    topFormat: 'Tutorial threads + video clips',
-    postCadence: '6-8/week',
-    stealThis:
-      'Web2->Web3 bridge language. Never assumes knowledge. Code always works.',
-  },
-  {
     account: 'Jarrod Watts',
     handle: '@jarrodwatts',
     followers: '29.8K',
@@ -67,37 +37,47 @@ export const competitorAccounts: CompetitorAccount[] = [
     topFormat: 'Live demo videos + GIFs',
     postCadence: '5-7/week',
     stealThis:
-      'Show > tell. 30-second demos that make you want to build. Highest engagement rate.',
+      'Show > tell is the Key to unlock the highest engagement rate.',
   },
   {
-    account: 'Armani Ferrante',
-    handle: '@armaniferrante',
-    followers: '157.2K',
+    account: 'Mert | helius.dev',
+    handle: '@0xMert_',
+    followers: '315.9K',
     engagementRate: '1-3%',
-    topFormat: 'Technical deep-dives + updates',
-    postCadence: '7-9/week',
+    topFormat: 'Community polls + hot takes',
+    postCadence: '7-10/week',
     stealThis:
-      'Anchor creator credibility. Technical substance over frequency.',
+      'Engagement farming with genuine questions. Never sells, always advocates.',
   },
   {
-    account: 'Base',
-    handle: '@base',
-    followers: '1.12M',
-    engagementRate: '1-4%',
-    topFormat: 'Project spotlights + vibes',
+    account: 'Nader Dabit',
+    handle: '@dabit3',
+    followers: '184.3K',
+    engagementRate: '0.2-1%',
+    topFormat: 'Tutorials videos',
     postCadence: '6-8/week',
     stealThis:
-      'Competitor. Strong community feel but low technical depth. We can beat on substance.',
+      'His Web2->Web3 video content playbook.',
+  },
+  {
+    account: 'Uttam',
+    handle: '@uttam_singhk',
+    followers: '22.6K',
+    engagementRate: '1-5+%',
+    topFormat: 'Memes.',
+    postCadence: '7-9/week',
+    stealThis:
+      'Leverage trends to shortcut growth. Tie in clever captions that only other developers could understand.',
   },
   {
     account: 'Ethereum',
     handle: '@ethereum',
     followers: '4.09M',
     engagementRate: '1-3%',
-    topFormat: 'Protocol updates + event promos',
+    topFormat: 'Long form',
     postCadence: '4-6/week',
     stealThis:
-      'Competitor. Institutional but boring. We should be the fun alternative.',
+      'EFs new media team is already posting videos worth studying.',
   },
 ];
 

@@ -24,7 +24,7 @@ export function ContentStrategyTab({ events, onEventClick }: ContentStrategyTabP
         icon="🔍"
         iconVariant="default"
         title="Crypto Dev Twitter Audit"
-        subtitle="Who's winning and why"
+        subtitle="Who's winning and what can we learn?"
       >
         <p className={styles.sectionDesc}>
           Analysis of successful developer-focused accounts to inform our content strategy.
@@ -66,10 +66,10 @@ export function ContentStrategyTab({ events, onEventClick }: ContentStrategyTabP
         icon="📅"
         iconVariant="metrics"
         title="30-Day Content Calendar"
-        subtitle="Click any event for full content details"
+        subtitle="Click on any item to see a content sample."
       >
         <p className={styles.sectionDesc}>
-          A strategic content calendar balancing viral demos, educational tips, memes, developer spotlights, and collaborations.
+          This content strategy is centered around quickly revitalize the engagement and increase the surface area.
         </p>
 
         <ContentCalendar events={events} onEventClick={onEventClick} />
@@ -100,8 +100,8 @@ export function ContentStrategyTab({ events, onEventClick }: ContentStrategyTabP
         id="section-metrics"
         icon="📊"
         iconVariant="metrics"
-        title="Success Metrics"
-        subtitle="What we're measuring and why"
+        title="Measuring Impact"
+        subtitle="Blame Nikita for the bad weeks, and take credit for the good ones."
       >
         <Table
           columns={[
@@ -121,7 +121,7 @@ export function ContentStrategyTab({ events, onEventClick }: ContentStrategyTabP
         icon="🎁"
         iconVariant="bonus"
         title="Bonus: Collaboration Targets"
-        subtitle="Strategic partnership opportunities"
+        subtitle="Link and build."
       >
         <Table
           columns={[
