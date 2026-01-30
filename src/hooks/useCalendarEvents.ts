@@ -106,7 +106,7 @@ export function useCalendarEvents() {
         lines.push(`      type: '${event.type}',`);
         lines.push(`      bestTime: '${event.bestTime.replace(/'/g, "\\'")}',`);
         lines.push(`      content: \`${event.content.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,`);
-        lines.push(`      notes: '${event.notes.replace(/'/g, "\\'")}',`);
+        lines.push(`      notes: \`${event.notes.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,`);
         lines.push(`      imageUrl: ${event.imageUrl ? `'${event.imageUrl}'` : 'null'},`);
         lines.push(`    },`);
       }
