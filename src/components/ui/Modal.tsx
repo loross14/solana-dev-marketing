@@ -70,6 +70,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
 
   // Form state for editing
   const [editTitle, setEditTitle] = useState('');
+  const [editType, setEditType] = useState<CalendarEvent['type']>('Thread');
   const [editContent, setEditContent] = useState('');
   const [editBestTime, setEditBestTime] = useState('');
   const [editNotes, setEditNotes] = useState('');
@@ -79,6 +80,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
   useEffect(() => {
     if (event) {
       setEditTitle(event.title);
+      setEditType(event.type);
       setEditContent(event.content);
       setEditBestTime(event.bestTime);
       setEditNotes(event.notes);
@@ -186,6 +188,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
 
   const handleCancelEdit = () => {
     setEditTitle(event.title);
+    setEditType(event.type);
     setEditContent(event.content);
     setEditBestTime(event.bestTime);
     setEditNotes(event.notes);
@@ -198,6 +201,7 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
     if (onSave) {
       onSave(event.id, {
         title: editTitle,
+        type: editType,
         content: editContent,
         bestTime: editBestTime,
         notes: editNotes,
@@ -350,7 +354,21 @@ export function Modal({ isOpen, onClose, event, onSave }: ModalProps) {
           <div className={styles.metaGrid}>
             <div className={styles.metaCard}>
               <span className={styles.metaLabel}>Type</span>
-              <span className={styles.metaValue}>{event.type}</span>
+              {isEditing ? (
+                <select
+                  value={editType}
+                  onChange={(e) => setEditType(e.target.value as CalendarEvent['type'])}
+                  className={styles.metaSelect}
+                >
+                  <option value="Thread">Thread</option>
+                  <option value="Quick Tip">Quick Tip</option>
+                  <option value="Meme">Meme</option>
+                  <option value="Spotlight">Spotlight</option>
+                  <option value="Engagement">Engagement</option>
+                </select>
+              ) : (
+                <span className={styles.metaValue}>{event.type}</span>
+              )}
             </div>
             <div className={styles.metaCard}>
               <span className={styles.metaLabel}>Best Time</span>

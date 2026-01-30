@@ -303,7 +303,7 @@ We will be taking notes 📝`,
       title: 'What we shipped this week.',
       type: 'Spotlight',
       bestTime: '11am EST',
-      content: `What Solana devs shipped this week:
+      content: `What the Solana team shipped this week:
 
 🏆 @[project1] launched [feature]
 🛠️ @[project2] open-sourced [tool]
@@ -380,18 +380,13 @@ Here's what XYZ had to say, "[QUOTE]"`,
   18: [
     {
       id: 'day18-meme',
-      title: 'NFT Minting Costs',
+      title: 'vibe coding meme',
       type: 'Meme',
       bestTime: '4pm EST',
-      content: `Cost to mint 10,000 NFTs:
+      content: `You wouldn't vibe code a smart contract...
 
-Ethereum: $50,000+
-Polygon: $500
-Solana: $20
-Solana (compressed): $0.50
-
-The math isn't even close anymore.`,
-      notes: `Verify current numbers. Simple visual comparison.`,
+Would you?`,
+      notes: ``,
       imageUrl: null,
     },
     {
@@ -422,12 +417,12 @@ Here's how ZK compression actually works:
   19: [
     {
       id: 'day19-thread',
-      title: 'AI Trading Volume',
+      title: 'Agentic Trading Volume Spiking',
       type: 'Thread',
       bestTime: '10am EST',
-      content: `AI agents drove $8B+ in trading volume on Solana last month.
+      content: `AI agents drove $XB+ in trading volume on Solana last month.
 
-Not a typo. Eight billion dollars.
+Not a typo. X billion dollars.
 
 Here's what's happening:
 
@@ -444,7 +439,7 @@ Here's what's happening:
 → Composability = full DeFi stack access
 
 The robots are already here.`,
-      notes: `Ties directly to Q3 AI campaign. Link to Agent Kit.`,
+      notes: `Ties to Q3 AI campaign. Link to Agent Kit.`,
       imageUrl: null,
     },
   ],
@@ -456,10 +451,8 @@ The robots are already here.`,
       bestTime: '3pm EST',
       content: `What's the most frustrating part of building on Solana right now?
 
-Drop your honest answer below. We're listening.
-
-(And yes, we'll actually do something about it)`,
-      notes: `Respond to EVERY comment. Forward insights to DevRel team.`,
+Drop your honest answer below. We'll be taking notes.`,
+      notes: `Respond to many comments. Forward insights to DevRel team.`,
       imageUrl: null,
     },
     {
@@ -480,7 +473,7 @@ Lazy initialization pattern saves costs.`,
       title: 'Weekly Builder Roundup',
       type: 'Spotlight',
       bestTime: '11am EST',
-      content: `What Solana devs shipped this week
+      content: `What devs shipped this week on Solana:
 
 🏆 @[project1] launched [feature]
 🛠️ @[project2] open-sourced [tool]
@@ -572,7 +565,7 @@ The Solana Mobile Stack (SMS) is the answer.
 
 2/ Seed Vault: Secure key storage using phone's hardware security
 
-3/ dApp Store: Permissionless app distribution
+3/ App Store: Permissionless app distribution
 
 4/ What you can build:
 → Mobile games with real ownership
@@ -601,7 +594,7 @@ The narrative always changes. The builders never stopped.`,
     },
     {
       id: 'day25-thread',
-      title: 'Transfer Hooks Deep Dive',
+      title: 'Transfer Hooks Use Cases',
       type: 'Thread',
       bestTime: '10am EST',
       content: `Transfer Hooks are the most powerful Token Extension.
@@ -614,7 +607,7 @@ Use cases:
 → Gaming (trigger effects on item trades)
 → Taxes (auto-deduct fees to treasury)
 → Vesting (release schedule enforcement)`,
-      notes: `Token Extensions content performs well. High bookmark potential.`,
+      notes: `Token Extensions content performs well. High bookmark potential. Consider highlighting the use cases with a cool dedicated graphic people will want to bookmark.`,
       imageUrl: null,
     },
   ],
@@ -647,7 +640,7 @@ Solution: ALTs compress account references from 32 bytes → 1 byte.`,
 → Sub-cent execution costs
 → Best prices via aggregation
 
-For developers: Study how they designed keeper incentives.`,
+Study how they designed keeper incentives.`,
       notes: `Tag Jupiter. Emphasize the UX innovation.`,
       imageUrl: null,
     },
@@ -655,55 +648,46 @@ For developers: Study how they designed keeper incentives.`,
   27: [
     {
       id: 'day27-engagement',
-      title: 'Reply Day',
+      title: 'What did you ship this week? ',
       type: 'Engagement',
       bestTime: 'All Day',
-      content: `Dedicated reply day.
-
-Search for:
-→ Devs asking Solana questions
-→ New project announcements
-→ Migration considerations
-
-Goal: 20+ helpful replies with real technical value.`,
-      notes: `Build reputation as genuinely helpful.`,
+      content: `What did you ship this week? `,
+      notes: `Respond to comments to Build reputation as genuinely interested.`,
       imageUrl: null,
     },
     {
       id: 'day27-thread',
-      title: 'Security Footguns',
+      title: 'Avoid these mistakes!',
       type: 'Thread',
       bestTime: '10am EST',
       content: `Solana programs have unique security footguns.
 
-Top 5 vulnerabilities and how to avoid them:
+Top 5 vulnerabilities and how to avoid them 🧵
 
 1/ Missing signer checks
 2/ Owner validation
 3/ Account confusion
 4/ Integer overflow
-5/ Re-initialization attacks
-
-Security isn't optional. Get audited before mainnet.`,
-      notes: `High-value educational content. Reference Sec3 or OtterSec.`,
+5/ Re-initialization attacks`,
+      notes: `High-value educational content. CTA to docs.`,
       imageUrl: null,
     },
   ],
   28: [
     {
       id: 'day28-spotlight',
-      title: 'Weekly Builder Roundup',
+      title: 'What we shiped this week.',
       type: 'Spotlight',
       bestTime: '11am EST',
-      content: `What Solana devs shipped this week
+      content: `What the Solana team shipped this week:
 
 🏆 @[project1] launched [feature]
-🛠️ @[project2] hit [milestone]
-🚀 @[project3] went live on mainnet
-🎯 @[project4] announced [partnership]
-📚 @[dev] dropped [content]
+🛠️ @[project2] open-sourced [tool]
+🚀 @[project3] hit [milestone]
+🎯 @[project4] won [hackathon/grant]
+📚 @[dev] published [tutorial/guide]
 
-Missed someone? Drop them below`,
+What did you get done this week?`,
       notes: `Third week of the recurring series. Community expects it now.`,
       imageUrl: null,
     },
@@ -731,14 +715,11 @@ Versioned Transactions unlock:
       content: `$16B+ stablecoins live on Solana.
 194% year-over-year growth.
 
-The numbers:
 → USDC: $5.5B+
 → USDT: $2.3B+
 → PYUSD: 680% growth
 
-PayPal processes more PYUSD on Solana than Ethereum.
-
-That's not speculation. That's TradFi voting with their feet.`,
+TradFi is accelerating.`,
       notes: `Data from DeFiLlama/Chainstack. PayPal angle is strong.`,
       imageUrl: null,
     },
@@ -758,12 +739,12 @@ Ask us anything about:
 → Career in web3
 
 No question too basic. We're here to help.`,
-      notes: `High engagement potential. Requires 2+ hours of active responses.`,
+      notes: `High engagement potential. Requires 2+ hours of active responses, ideally with support from DevRel.`,
       imageUrl: null,
     },
     {
       id: 'day30-thread',
-      title: 'Month Recap',
+      title: 'Monthly Content Recap',
       type: 'Thread',
       bestTime: '10am EST',
       content: `30 days of @solana_devs content. Here's what we covered:
