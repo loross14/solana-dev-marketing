@@ -89,7 +89,7 @@ The team is now in Colosseum's accelerator with $250K in pre-seed.
       title: 'one for my non-technical friends',
       type: 'Meme',
       bestTime: '11am EST',
-      content: `This is a bullpost for all my non-technical friends out there.
+      content: `for the nontechnicals who were wondering... this is a bullpost.'
 
 [Graphic showcases Solana's continued developer growth and #1 position]`,
       notes: `Graphic will contain a diagram/chart of Solana's continued developer growth and #1 position (source from Electric Capital). It should be shareable, not overly academic given the caption. `,
