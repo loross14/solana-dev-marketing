@@ -20,7 +20,7 @@ export function AICampaignTab() {
         icon="🏆"
         iconVariant="content"
         title="Solana x AI Campaigns"
-        subtitle="Craft the narrative: Show > Tell"
+        subtitle="Craft the narratives: Show > Tell."
       >
         <Table
           columns={[

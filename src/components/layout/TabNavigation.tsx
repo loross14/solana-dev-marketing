@@ -8,7 +8,7 @@ interface TabNavProps {
 
 const tabs = [
   { id: 'q1' as TabId, number: '1', label: 'Content Strategy' },
-  { id: 'q3' as TabId, number: '3', label: 'AI Campaign' },
+  { id: 'q3' as TabId, number: '3', label: 'AI Positioning' },
 ];
 
 export function TabNavigation({ activeTab, onTabChange }: TabNavProps) {
