@@ -35,29 +35,29 @@ export const technicalSpecs: AITechnicalSpec[] = [
 // Competition structure
 export const competitionWeeks: CompetitionWeek[] = [
   {
-    week: 'Week 1',
+    track: 'Setting the Benchmark',
     theme: 'Kickoff',
     prize: 'Prize Package',
-    contentFocus: 'Attention, Engagement, Education'
+    contentFocus: 'Agents compete head to head on our new "decentralized ai" benchmark alongside a big marketing push.'
   },
   {
-    week: 'Week 2',
+    track: 'AI Hackathon',
     theme: 'Leaderboard',
     prize: 'Prize Package',
-    contentFocus: 'Public leaderboards, strategic breakdowns'
+    contentFocus: 'Bounties from top companies in Blockchain and AI. Coordinated announcements of tier 1 integrations to '
   },
   {
-    week: 'Week 3',
-    theme: 'Stories',
+    track: 'AI Trading Contests',
+    theme: 'Leaderboard',
     prize: 'Prize Package',
-    contentFocus: "Underdog stories, People's Choice voting"
+    contentFocus: 'Agent Trading Challenges and Competitions. HFT, DeFi, TradFi bounties.'
   },
   {
-    week: 'Week 4',
-    theme: 'Finals',
-    prize: 'Grand Prize',
-    contentFocus: 'Finals at Breakpoint London (Nov 2026)'
-  }
+    track: 'Content & Collaboration',
+    theme: 'Leaderboard',
+    prize: 'Prize Package',
+    contentFocus: 'Benchmark setting ducational content series on Crypto x AI, featuring ecosystem builders and their projects.'
+  },
 ];
 
 // Competition rules/categories
@@ -94,7 +94,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'Helius',
     whyTheyCare: 'RPC provider. Bots need reliable infrastructure. Demo their speed.',
-    askAmount: 'Free RPC access for all competitors + prize category'
+    askAmount: 'Free RPC access for competitors + prize category'
   },
   {
     name: 'Drift Protocol',
@@ -110,21 +110,6 @@ export const sponsors: Sponsor[] = [
     name: 'SendAI (Agent Kit)',
     whyTheyCare: 'Their toolkit powers the competition. Massive showcase opportunity.',
     askAmount: '"Most Innovative Use of Agent Kit" prize'
-  },
-  {
-    name: 'Anthropic',
-    whyTheyCare: 'Claude powers many AI agents. Showcase real-world agentic use case.',
-    askAmount: 'API credits for competitors + "Best Claude-Powered Bot" prize'
-  },
-  {
-    name: 'Google',
-    whyTheyCare: 'Gemini/Vertex AI integration. Enterprise AI credibility.',
-    askAmount: 'Cloud credits + co-marketing for competition launch'
-  },
-  {
-    name: 'Citadel',
-    whyTheyCare: 'Elite quant firm. Their involvement = instant credibility with finance talent.',
-    askAmount: 'Judging panel + recruitment pipeline for top performers'
   },
   {
     name: 'Jump Crypto',
@@ -240,24 +225,14 @@ export const aiChannels: Channel[] = [
 // Strategic partners
 export const strategicPartners: StrategicPartner[] = [
   {
-    partner: 'Claude Code',
+    partner: 'Anthropic',
     whyItMatters: 'Model providers are building agent infrastructure. First-mover advantage.',
     thePlay: 'Official Solana integration built into claude connections menu.'
-  },
-  {
-    partner: 'David Sachs',
-    whyItMatters: 'A cosign from the Czar signals Solana is aligned with upcoming policy.',
-    thePlay: 'Ask Sachs to record a short clip celebrating the endeavour. Sponsorship at an all in summit for additional exposure.'
   },
   {
     partner: 'LangChain',
     whyItMatters: 'De facto agent framework. 50K+ Discord, massive mindshare.',
     thePlay: 'Integration in core library, fancy branding to farm attention.'
-  },
-  {
-    partner: 'NVIDIA',
-    whyItMatters: 'All the cool kids are doing it. Apparently theyre counting it towards the GDP or something?',
-    thePlay: 'Find any low hanging partnership that the marketing team could leverage.'
   },
 ];
 
@@ -267,19 +242,19 @@ export const aiProjects: AIProject[] = [
     name: 'Grass',
     category: 'Data/Training',
     keyStats: '8.5M+ monthly active participants',
-    showcaseAngle: 'Competition category for training/tuning exclusively with data from Grass. '
+    showcaseAngle: 'Collaborate on DePIN & Grass content. '
   },
   {
     name: 'io.net',
     category: 'GPU Compute',
     keyStats: 'Aggregated GPU network, enterprise focus',
-    showcaseAngle: 'Free Banner Ads for their made-up campaign called, "Anyone need to borrow my extra H2000?"'
+    showcaseAngle: 'Free Credits for Qualified enterprises & Content Collaboraion.'
   },
   {
-    name: 'Virtuals Protocol',
+    name: 'Virtuals',
     category: 'AI Agents',
     keyStats: 'AI agents with on-chain identities',
-    showcaseAngle: 'The "AI influencer" revolution. Already generating revenue.'
+    showcaseAngle: 'Collaborate on AI coordination & virtuals content.'
   },
 ];
 

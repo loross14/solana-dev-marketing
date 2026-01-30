@@ -21,41 +21,22 @@ export function AICampaignTab() {
         id="section-q3-content"
         icon="🏆"
         iconVariant="content"
-        title="Campaign Concept"
-        subtitle="The Agentic Olympics"
+        title="Solana x AI Campaigns"
+        subtitle="Craft the narrative: Show > Tell"
       >
-        <p className={styles.sectionDesc}>
-          A multi-week competition designed to accelerate AI adoption on Solana by targetic strategic frontiers of innovation.
-        </p>
-
-        <h4 className={styles.subheading}>Sample Event: Trading Competition</h4>
         <Table
           columns={[
-            { key: 'week', header: 'Week', render: (v) => <strong>{String(v)}</strong> },
-            { key: 'prize', header: 'Prize' },
-            { key: 'contentFocus', header: 'Content' },
+            { key: 'track', header: 'Campaign', render: (v) => <strong>{String(v)}</strong> },
+            { key: 'contentFocus', header: 'Narrative' },
           ]}
           data={competitionWeeks}
           ariaLabel="Competition timeline"
         />
 
-        <h4 className={styles.subheading}>Sample Rules: Trading Competition</h4>
-        <div className={styles.patternGrid}>
-          {competitionRules.map((rule, i) => (
-            <PillarCard
-              key={i}
-              icon={rule.icon}
-              title={rule.title}
-              description={rule.description}
-            />
-          ))}
-        </div>
-
-        <h4 className={styles.subheading}>Partnership Targets</h4>
         <Table
           columns={[
-            { key: 'name', header: 'Sponsor', render: (v) => <strong>{String(v)}</strong> },
-            { key: 'whyTheyCare', header: "Why They'd Care" },
+            { key: 'name', header: 'Partner', render: (v) => <strong>{String(v)}</strong> },
+            { key: 'whyTheyCare', header: "Alignment" },
             { key: 'askAmount', header: 'Ask' },
           ]}
           data={sponsors}
@@ -63,28 +44,6 @@ export function AICampaignTab() {
         />
       </CollapsibleSection>
 
-      {/* Narrative Section */}
-      <CollapsibleSection
-        id="section-q3-narrative"
-        icon="🤖"
-        iconVariant="ai"
-        title="Why Solana?"
-        subtitle="'I am honestly a huge fan' -Clawdbot"
-      >
-        <p className={styles.sectionDesc}>
-          A few reasons why Solana is positioned to become the backbone of the agentic economy:
-        </p>
-
-        <Table
-          columns={[
-            { key: 'metric', header: 'Metric', render: (v) => <strong>{String(v)}</strong> },
-            { key: 'solanaSpecs', header: 'Specs' },
-            { key: 'whyItMatters', header: 'Why It Matters' },
-          ]}
-          data={technicalSpecs}
-          ariaLabel="Technical specifications"
-        />
-      </CollapsibleSection>
 
       {/* Channels Section */}
       <CollapsibleSection
@@ -94,10 +53,29 @@ export function AICampaignTab() {
         title="Distribution Channels"
         subtitle="Maximize impact by targeting multiple strategic niches in parallel."
       >
-        <p className={styles.sectionDesc}>
-          Approach should include everyone from solana traders with claude to researchers with frontier hardware.
-        </p>
-        <h4 className={styles.subheading}>Crypto-Native (Already Solana-Aware)</h4>
+          <h4 className={styles.subheading}>AI/ML Engineers (to participate & contribute)</h4>
+          <Table
+            columns={[
+              { key: 'name', header: 'Channel', render: (v) => <strong>{String(v)}</strong> },
+              { key: 'audience', header: 'Audience' },
+              { key: 'activationStrategy', header: 'Competition Angle' },
+            ]}
+            data={aiChannels}
+            ariaLabel="AI channels"
+          />
+
+        <h4 className={styles.subheading}>Quant & Algo Trading (to participate & contribute)</h4>
+        <Table
+          columns={[
+            { key: 'name', header: 'Channel', render: (v) => <strong>{String(v)}</strong> },
+            { key: 'audience', header: 'Audience' },
+            { key: 'activationStrategy', header: 'Competition Angle' },
+          ]}
+          data={quantChannels}
+          ariaLabel="Quant channels"
+        />
+          
+          <h4 className={styles.subheading}>Crypto-Native (to sell the narrative to)</h4>
         <Table
           columns={[
             { key: 'name', header: 'Channel', render: (v) => <strong>{String(v)}</strong> },
@@ -108,27 +86,7 @@ export function AICampaignTab() {
           ariaLabel="Crypto channels"
         />
 
-        <h4 className={styles.subheading}>Quant & Algo Trading (High-Value Recruits)</h4>
-        <Table
-          columns={[
-            { key: 'name', header: 'Channel', render: (v) => <strong>{String(v)}</strong> },
-            { key: 'audience', header: 'Audience' },
-            { key: 'activationStrategy', header: 'Competition Angle' },
-          ]}
-          data={quantChannels}
-          ariaLabel="Quant channels"
-        />
-
-        <h4 className={styles.subheading}>AI/ML (Skeptical of Crypto)</h4>
-        <Table
-          columns={[
-            { key: 'name', header: 'Channel', render: (v) => <strong>{String(v)}</strong> },
-            { key: 'audience', header: 'Audience' },
-            { key: 'activationStrategy', header: 'Competition Angle' },
-          ]}
-          data={aiChannels}
-          ariaLabel="AI channels"
-        />
+       
       </CollapsibleSection>
 
       {/* Partners Section */}
@@ -136,7 +94,7 @@ export function AICampaignTab() {
         id="section-q3-partners"
         icon="🤝"
         iconVariant="default"
-        title="Strategic Partnerships"
+        title="Strategic Integrations"
         subtitle="Global positioning through high-signal alliances."
       >
         <Table
