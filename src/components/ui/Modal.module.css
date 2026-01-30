@@ -124,28 +124,28 @@
 }
 
 .badgeThread {
-  background: rgba(153, 69, 255, 0.15);
-  color: var(--solana-purple);
-}
-
-.badgeTip {
   background: rgba(20, 241, 149, 0.15);
   color: var(--solana-green);
 }
 
+.badgeTip {
+  background: rgba(153, 69, 255, 0.15);
+  color: var(--solana-purple);
+}
+
 .badgeMeme {
+  background: rgba(255, 107, 107, 0.15);
+  color: var(--accent-red);
+}
+
+.badgeSpotlight {
   background: rgba(255, 217, 61, 0.15);
   color: var(--accent-yellow);
 }
 
-.badgeSpotlight {
+.badgeEngagement {
   background: rgba(0, 209, 255, 0.15);
   color: var(--solana-blue);
-}
-
-.badgeEngagement {
-  background: rgba(255, 107, 107, 0.15);
-  color: var(--accent-red);
 }
 
 /* Editing Badge */
