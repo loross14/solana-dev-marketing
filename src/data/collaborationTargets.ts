@@ -35,6 +35,13 @@ export const collaborationTargets: CollaborationTarget[] = [
     followers: '80K+',
     whyTheyMatter: "Solana Foundation VP of Tech. Internal-yet-external voice providing credible, non-salesy value to developers. Deep knowledge of protocol upgrades and ecosystem pain points.",
     collaborationIdea: "Co-host AMAs on upgrades like Alpenglow. Address developer pain points like congestion with technical deep-dives for retention-focused marketing."
+  },
+  {
+    name: 'xAI Team',
+    handle: '@xaboratories',
+    followers: '1.5M+',
+    whyTheyMatter: "Elon Musk's AI company building Grok. Direct line to X platform integration and the broader Musk ecosystem. If Solana integrates with X, this becomes the most important partnership in crypto.",
+    collaborationIdea: "Co-marketing campaign if/when Solana integrates with X. Joint announcements, developer documentation, and showcase of Solana-powered features on the platform. Position Solana as the blockchain infrastructure behind X's crypto features."
   }
 ];
 
